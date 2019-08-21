@@ -10,7 +10,6 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
-import { AuthentificationComponent } from './authentification/authentification.component';
 import { MenuComponent } from './menu/menu.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
 import { StatistiquesComponent } from './statistiques/statistiques.component';
@@ -31,7 +30,6 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    AuthentificationComponent,
     MenuComponent,
     StatistiquesComponent,
     AnnoncesComponent,
