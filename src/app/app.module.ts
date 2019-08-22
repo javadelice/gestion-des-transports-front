@@ -17,7 +17,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path:'collaborateur', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
   {path: 'reservations', component: ReservationsComponent},
   {path: 'annonces', component: AnnoncesComponent},
