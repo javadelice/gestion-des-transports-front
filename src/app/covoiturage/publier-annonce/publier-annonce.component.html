@@ -1,3 +1,223 @@
-<p>
-  publier-annonce works!
-</p>
+<div class="font-weight-bold mb-4">
+  <a routerLink="/annonces"><button type="button" class="btn btn-outline-dark btn-sm">Retour à la liste</button></a>
+</div>
+
+<div class="font-weight-bold mb-4">
+  <h1>Publier une annonce</h1>
+</div>
+
+<div class="mb-3">
+  <mdb-card>
+
+    <mdb-card-header class="primary-color white-text">
+      <h5>
+        <strong>Itinéraire</strong>
+      </h5>
+    </mdb-card-header>
+
+    <mdb-card-body class="px-lg-5 pt-0">
+
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DÉPART-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Adresse de départ : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DÉPART-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie placeholder="Gare de Nantes">
+          </form>
+        </div>
+      </div>
+
+
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DESTINATION-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Adresse de destination : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DESTINATION-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie placeholder="Gare de Lyon">
+          </form>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-3">
+        <!--DURÉE DU TRAJET-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Durée du trajet : </label>
+          </form>
+        </div>
+
+        <div class="col-4 mt-2">
+
+          <p>2H51</p>
+
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-1">
+        <!--DISTANCE-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Distance : </label>
+          </form>
+        </div>
+
+        <div class="col-4 mt-2">
+
+          <p>250km</p>
+
+        </div>
+      </div>
+
+    </mdb-card-body>
+
+    <mdb-card-header class="primary-color white-text">
+      <h5>
+        <strong>Véhicule</strong>
+      </h5>
+    </mdb-card-header>
+
+    <mdb-card-body class="px-lg-5 pt-0">
+
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DÉPART-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Immatriculation : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DÉPART-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie>
+          </form>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DÉPART-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Marque : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DÉPART-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie>
+          </form>
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DÉPART-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Modèle : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DÉPART-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie>
+          </form>
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <!--ADRESSE DÉPART-->
+        <div class="col-3">
+          <form>
+            <label class="ml-2">Nombre de places disponibles : </label>
+          </form>
+        </div>
+        <!--BARRE RECHERCHE DÉPART-->
+        <div class="col-4">
+          <form>
+            <input type="search" class="form-control" id="searchName" #saisie>
+          </form>
+        </div>
+      </div>
+
+    </mdb-card-body>
+
+    <mdb-card-header class="primary-color white-text">
+      <h5>
+        <strong>Date et horaire</strong>
+      </h5>
+    </mdb-card-header>
+    <mdb-card-body class="px-lg-5 pt-0"></mdb-card-body>
+    <div class="row align-items-center mt-3 mb-3">
+
+      <div class="col-3 ml-5">
+        <form>
+          <label class="ml-2">Date / Heure : </label>
+        </form>
+      </div>
+
+      <div class="col-3">
+        <input class="form-control mb-1" type="date" name="dateDebut"/>
+      </div>
+
+      <div class="col-1">
+        <form>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option value="1">00</option>
+            <option value="2">01</option>
+            <option value="3">02</option>
+            <option value="4">03</option>
+            <option value="5">04</option>
+            <option value="6">05</option>
+            <option value="7">06</option>
+            <option value="8">07</option>
+            <option value="9">08</option>
+            <option value="10">09</option>
+            <option value="11">10</option>
+            <option value="12">11</option>
+            <option value="13">12</option>
+            <option value="14">13</option>
+            <option value="15">14</option>
+            <option value="16">15</option>
+            <option value="17">16</option>
+            <option value="18">17</option>
+            <option value="19">18</option>
+            <option value="20">19</option>
+            <option value="21">20</option>
+            <option value="22">21</option>
+            <option value="23">22</option>
+            <option value="24">23</option>
+
+
+          </select>
+
+        </form>
+      </div>
+
+      <div class="col-1">
+        <form>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option value="1">00</option>
+            <option value="2">10</option>
+            <option value="3">20</option>
+            <option value="4">30</option>
+            <option value="5">40</option>
+            <option value="6">50</option>
+          </select>
+
+        </form>
+      </div>
+
+    </div>
+  </mdb-card>
+</div>
+<div class="font-weight-bold mb-4 d-flex justify-content-end">
+  <a routerLink="/annonces/creer"><button type="button" class="btn primary-color">Publier</button></a>
+</div>
+
