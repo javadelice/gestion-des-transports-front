@@ -14,7 +14,6 @@ import { MenuComponent } from './menu/menu.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
 import { StatistiquesComponent } from './statistiques/statistiques.component';
 import { ReservationsComponent } from './reservations/reservations.component';
-import { ModalComponent } from './modal/modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
@@ -35,8 +34,7 @@ const routes: Routes = [
     MenuComponent,
     StatistiquesComponent,
     AnnoncesComponent,
-    ReservationsComponent,
-    ModalComponent
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
