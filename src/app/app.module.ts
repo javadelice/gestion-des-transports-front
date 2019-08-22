@@ -10,11 +10,16 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { AnnoncesComponent } from './covoiturage/annonces/annonces.component';
+import { PublierAnnonceComponent } from './covoiturage/publier-annonce/publier-annonce.component';
+
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  { path: '', redirectTo: '/tech', pathMatch: 'full'}
+  { path: '', redirectTo: '/tech', pathMatch: 'full'},
+  { path: 'annonces', component: AnnoncesComponent},
+  { path: 'annonces/creer', component: PublierAnnonceComponent}
 ];
 
 
@@ -22,7 +27,9 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     TechComponent,
-    AuthComponent
+    AuthComponent,
+    AnnoncesComponent,
+    PublierAnnonceComponent
   ],
   imports: [
     BrowserModule,
