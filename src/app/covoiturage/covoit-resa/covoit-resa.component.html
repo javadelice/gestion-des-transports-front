@@ -7,11 +7,47 @@
     </tr>
     </thead>
     <tbody>
-    <tr mdbTableCol *ngFor="let el of elements">
-      <th scope="row">{{el.date}}</th>
-      <td>{{el.depart}}</td>
-      <td>{{el.dest}}</td>
-      <td>{{el.details}}</td>
+    <tr mdbTableCol *ngFor="let annonce of annonces">
+      <th scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</th>
+      <td>{{annonce.itineraire.adresseDepart}}</td>
+      <td>{{annonce.itineraire.adresseDest}}</td>
+      <td>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
+
+        <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Détails du covoiturage</h4>
+              </div>
+              <div class="modal-body">
+                <dl class="row">
+                  <dt class="col-4">Départ</dt>
+                  <dd class="col-8">{{annonce?.itineraire.adresseDepart }}</dd>
+
+                  <dt class="col-4">Destination</dt>
+                  <dd class="col-8">{{annonce?.itineraire.adresseDest}}</dd>
+
+                  <dt class="col-4">Date/heure</dt>
+                  <dd class="col-8">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</dd>
+
+                  <dt class="col-4">Véhicule</dt>
+                  <dd class="col-8">{{annonce?.vehicule.marque+" "+annonce?.vehicule.modele}}</dd>
+
+                  <dt class="col-4">Chauffeur</dt>
+                  <dd class="col-8">{{annonce?.collegue.nomComplet}}</dd>
+                </dl>
+              </div>
+              <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>
