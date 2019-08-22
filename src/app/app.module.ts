@@ -14,6 +14,8 @@ import { MenuComponent } from './menu/menu.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
 import { StatistiquesComponent } from './statistiques/statistiques.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -33,14 +35,16 @@ const routes: Routes = [
     MenuComponent,
     StatistiquesComponent,
     AnnoncesComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

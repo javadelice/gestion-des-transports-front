@@ -1,5 +1,3 @@
-<div>
-
 <div class="text-center my-4">
   <img src="assets/icons/logo.svg" class="img-fluid rounded my-4" alt="Responsive image">
   <h1>GDT</h1>
@@ -26,8 +24,10 @@
         <label for="defaultForm-pass">Mot de passe</label>
       </div>
       <div class="text-center">
-        <a type="button" mdbBtn color="primary" sclass="waves-light" data-toggle="modal" data-target="#exampleModal" mdbWavesEffect value="Se connecter"
-          (click)="connecter()">Se connecter</a>
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Se connecter</button>
+
+
+
       </div>
       <div *ngIf="err" class="text-danger">
         Oops, les informations saisies ne permettent pas de vous authentifier.
@@ -37,24 +37,32 @@
 </mdb-card>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Choisissez votre profil</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 text-center">
+          <img src="assets/icons/collab.svg" class="img-fluid rounded my-4" alt="Responsive image">
         </div>
-        <div class="modal-body">
-          ...
+        <div class="col-sm-4 text-center">
+          <img src="assets/icons/chauffeur.svg" class="img-fluid rounded my-4"
+            alt="Responsive image"></div>
+        <div class="col-sm-4 text-center ">
+          <img src="assets/icons/admin.svg" class="img-fluid rounded my-4" alt="Responsive image">
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      <div class="w-100"></div>
+        <div class="col-sm-4 text-center">Collaborateur </div>
+        <div class="col-sm-4 text-center">Chauffeur </div>
+        <div class="col-sm-4 text-center">Administrateur</div>
       </div>
+
     </div>
   </div>
-</div>
+</ng-template>
