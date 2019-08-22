@@ -1,34 +1,37 @@
+<div *ngIf="!(collegueConnecte | async).estAnonyme()">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
 
-    <nav class="nav-pills nav justify-content-center mx-4">
-        <div *ngIf="!(collegueConnecte | async).estAnonyme()">
-        <div class="row">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <img src="assets/icons/logo.svg" width="50" height="50">
-            </li>
-            <li class="nav-item">
-              <a class="nav-item nav-link" routerLink="/reservations" routerLinkActive="active">Vos réservations</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item nav-link" routerLink="/annonces" routerLinkActive="active">Vos annonces</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item nav-link" routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
+        <mdb-navbar-brand><img src="assets/icons/logo.svg" width="50" height="50"></mdb-navbar-brand>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                        Vos réservations<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="admin/chauffeurs" routerLinkActive="active">Chauffeurs</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Véhicules</a>
+                    </div>
+                </li>
 
-            </li>
-          </ul>
-        </div>
-        <div class="row justify-content-center mt-3 mb-5">
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect routerLink="/annonces" routerLinkActive="active">Vos annonces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
+                </li>
+            </ul>
 
-            <span>{{(collegueConnecte | async).email}}</span>
-            <span>({{(collegueConnecte | async).roles}})</span>
-          </div>
+            <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="col justify-content-center mt-3 mb-5">
+                  Bonjour
+                <span>{{(collegueConnecte | async).nom}}</span>
+                <span>({{(collegueConnecte | async).prenom}})</span>
+              </div>
+              <div class="col justify-content-center mt-3 mb-5">
+                        <a class="nav-link waves-light" mdbWavesEffect (click)="seDeconnecter()">Se déconnecter</a>
+                </div>
+            </form>
+        </links>
 
-
-        </div>
-      </nav>
-
-
+    </mdb-navbar>
+    </div>

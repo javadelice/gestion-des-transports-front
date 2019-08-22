@@ -15,11 +15,13 @@ import { AnnoncesComponent } from './annonces/annonces.component';
 import { StatistiquesComponent } from './statistiques/statistiques.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ChauffeursComponent } from './chauffeurs/chauffeurs.component';
 
 const routes: Routes = [
   { path:'collaborateur', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
   {path: 'reservations', component: ReservationsComponent},
+  {path: 'admin/chauffeurs', component: ChauffeursComponent},
   {path: 'annonces', component: AnnoncesComponent},
   {path: 'statistiques', component: StatistiquesComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
@@ -34,7 +36,8 @@ const routes: Routes = [
     MenuComponent,
     StatistiquesComponent,
     AnnoncesComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    ChauffeursComponent
   ],
   imports: [
     BrowserModule,
