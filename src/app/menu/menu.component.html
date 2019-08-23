@@ -1,0 +1,40 @@
+<div *ngIf="!(collegueConnecte | async).estAnonyme()">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+
+    <mdb-navbar-brand><img src="assets/icons/logosmall.svg" width="50" height="50"></mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a  class="nav-link waves-light" mdbWavesEffect routerLink="/reservations">
+            Vos réservations</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/annonces" routerLinkActive="active">Vos
+            annonces</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
+        </li>
+      </ul>
+
+      <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
+        <div class="md-form my-0">
+            <span class="navbar-text white-text">
+
+                  Bonjour
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
+                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
+
+          </span>
+
+          <button mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" (click)="seDeconnecter()"
+                  mdbWavesEffect>Se déconnecter
+          </button>
+
+        </div>
+      </form>
+    </links>
+
+  </mdb-navbar>
+</div>
