@@ -13,11 +13,15 @@ import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {ReservationComponent} from './reservation/reservation.component';
 import {CovoitResaComponent} from './covoiturage/covoit-resa/covoit-resa.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CovoitResaCreerComponent } from './covoiturage/covoit-resa-creer/covoit-resa-creer.component';
+import { ReservationCreerComponent } from './reservation-creer/reservation-creer.component';
 
 const routes: Routes = [
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path:'auth', component: AuthComponent},
-  {path:'reservations', component : ReservationComponent},
+  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path: 'auth', component: AuthComponent},
+  {path: 'reservations', component : ReservationComponent, canActivate: [StatutConnecteService]},
+  {path: 'reservations/creer', component : ReservationCreerComponent, canActivate: [StatutConnecteService]},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -28,7 +32,9 @@ const routes: Routes = [
     TechComponent,
     AuthComponent,
     ReservationComponent,
-    CovoitResaComponent
+    CovoitResaComponent,
+    CovoitResaCreerComponent,
+    ReservationCreerComponent
 
   ],
   imports: [
@@ -37,6 +43,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
+    NgbModule,
     FormsModule
   ],
   providers: [{

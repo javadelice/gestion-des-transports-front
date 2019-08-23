@@ -11,7 +11,11 @@ export class CovoitResaService {
 
   constructor(private _http: HttpClient) { }
 
-  public getResarvations(): Observable<AnnonceCovoitResa[]> {
+  public getReservations(): Observable<AnnonceCovoitResa[]> {
     return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations`);
+  }
+
+  public getOldReservations(): Observable<AnnonceCovoitResa[]> {
+    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations_old`);
   }
 }
