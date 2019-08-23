@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Chauffeur } from '../models/Chauffeur';
 import { Subject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Collaborateur } from '../models/Collaborateur';
 
 @Injectable({
   providedIn: 'root'
@@ -17,31 +16,28 @@ export class ChauffeursService {
 // construction du Subject (commun à tous les composants qui vont l'utiliser - unique)
 subChauffeurSelectionne = new Subject<Chauffeur>();
 
-publier(unChauffeur: Chauffeur){
+publier(unChauffeur: Chauffeur) {
   this.subChauffeurSelectionne.next(unChauffeur);
 }
 
-abonnement(): Observable<Chauffeur>{
+abonnement(): Observable<Chauffeur> {
   return this.subChauffeurSelectionne.asObservable();
 }
 
-getAllChauffeurs(): Observable<Chauffeur[]>{
+getAllChauffeurs(): Observable<Chauffeur[]> {
   return this.httpClient
-  .get<Chauffeur[]>(this.URL_BACKEND+'admin/chauffeurs', {
+  .get<Chauffeur[]>(this.URL_BACKEND + 'admin/chauffeurs', {
     withCredentials: true
   });
 }
 
 
-setRoleChauffeur(matricule:string, role: string) : Observable<Collaborateur>{
+
+rechercherParMatricule(matricule: string): Observable<Chauffeur>  {
   return this.httpClient
-  .patch<Collaborateur>(this.URL_BACKEND+'admin/'+matricule,
-  {
-    "role": role
-  }, {
+  .get<Chauffeur>(this.URL_BACKEND + 'admin/chauffeurs', {
     withCredentials: true
-  }
-  );
+  });
 }
 
 }

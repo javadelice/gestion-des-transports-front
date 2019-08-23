@@ -23,4 +23,9 @@ this.srv.getAllChauffeurs()
     this.modalRef = this.modalService.show(template);
   }
 
+  getChauffeur(matricule:string){
+    this.srv.rechercherParMatricule(matricule)
+    .subscribe(chauffeur => this.srv.publier(chauffeur));
+  }
+
 }
