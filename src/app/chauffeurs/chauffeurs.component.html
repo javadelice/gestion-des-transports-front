@@ -55,94 +55,40 @@
   </mdb-card-body>
 </mdb-card>
 
+<div *ngIf="chauffeurs.length>0">
 
 
-<mdb-card class="my-3">
-  <mdb-card-header class="primary-color white-text">
-    <h5>
-      <strong>nom prenom</strong>
-    </h5>
-  </mdb-card-header>
-
-  <mdb-card-body class="px-lg-5 pt-0">
-
-
-
-    <div class="col p-4 d-flex flex-column position-static">
-
-      <div class="card-text mb-auto">
-        <div class="media d-block d-md-flex">
-          <img class="d-flex avatar-2 mb-md-0 mb-3 mx-auto" src="assets/icons/logo.svg" alt="Generic placeholder image">
-          <div class="media-body text-left text-md-left ml-md-3 ml-0">
-            <div class="row align-items-center mt-3">
-
-              <div class="col-md-4">
-                <h5>Nom </h5>
-              </div>
-
-              <div class="col-md-8">
-                <h5>Dupont</h5>
-              </div>
-
-              <div class="col-md-4">
-                <h5>Prénom</h5>
-              </div>
-
-              <div class="col-md-8">
-                <h5>Robert</h5>
-              </div>
-
-              <div class="col-md-4">
-                <h5>Permis </h5>
-              </div>
-
-              <div class="col-md-8">
-                <h5>xxxx-xxxx-xxxx </h5>
-              </div>
-
-              <div class="col-md-4">
-                <h5>Email </h5>
-              </div>
-
-              <div class="col-md-8">
-                <h5>robert.dupont@gmail.com</h5>
-              </div>
-
-              <div class="col-md-4">
-                <h5>Téléphone </h5>
-              </div>
-
-              <div class="col-md-8">
-                <h5>06.26.24.25.23 </h5>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <div class="card my-3" style="max-width: 540px;" *ngFor="let chauffeur of chauffeurs">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal">{{chauffeur.nom | uppercase}} {{chauffeur.prenom}}</h4>
     </div>
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="assets/icons/logo.svg" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="card-text">
+            <dl class="row">
+              <dt class="col-sm-5">Matricule:</dt>
+              <dd class="col-sm-7">{{chauffeur.matricule}}</dd>
+              <dt class="col-sm-5">Nom: </dt>
+              <dd class="col-sm-7">{{chauffeur.nom | uppercase}}</dd>
+              <dt class="col-sm-5">Prenom:</dt>
+              <dd class="col-sm-7">{{chauffeur.prenom}}</dd>
+              <dt class="col-sm-5">Role:</dt>
+              <dd class="col-sm-7">{{chauffeur.roles}}</dd>
+              <dt class="col-sm-5">Email:</dt>
+              <dd class="col-sm-7">{{chauffeur.email}}</dd>
 
-  </mdb-card-body>
-</mdb-card>
+            </dl>
+          </div>
 
-<div class="card mb-4 shadow-sm" style="height: 100%">
-  <div class="row card-body text-center">
-
-    <div class="row text-center" *ngIf="chauffeurs.length>0">
-
-      <div class="card border-info mb-3 text-center" style="max-width: 18rem;" *ngFor="let chauffeur of chauffeurs">
-
-        <div class="card-header text-center">
-          <h4> {{chauffeur.nom | uppercase}} {{chauffeur.prenom}}</h4>
-        </div>
-        <div class="card-body text-info text-center">
-          <h5 class="card-title"></h5>
-          <p class="card-text"><img src="assets/icons/logo.svg" width="200" height="200"></p>
-        <div>{{chauffeur.email}}</div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 <router-outlet></router-outlet>
