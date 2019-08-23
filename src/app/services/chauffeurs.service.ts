@@ -32,19 +32,6 @@ getAllChauffeurs(): Observable<Chauffeur[]>{
   });
 }
 
-rechercherParNom(nom:string): Observable<Chauffeur[]>  {
-  return this.httpClient
-  .get<Chauffeur[]>(this.URL_BACKEND+'admin/chauffeurs?nom='+nom, {
-    withCredentials: true
-  });
-}
-
-rechercherParMatricule(matricule:string): Observable<Chauffeur>  {
-return this.httpClient
-.get<Chauffeur>(this.URL_BACKEND+'admin/chauffeurs/'+matricule, {
-  withCredentials: true
-});
-}
 
 setRoleChauffeur(matricule:string, role: string) : Observable<Collaborateur>{
   return this.httpClient
