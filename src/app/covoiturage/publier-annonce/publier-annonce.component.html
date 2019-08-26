@@ -34,7 +34,7 @@
 
             <input type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
               [(ngModel)]="infoCovoit.adresseDepart" #lieuDepart="ngModel" placeholder="Gare de Nantes" required>
-
+              <div *ngIf="lieuDepart.dirty && lieuDepart.invalid" class="invalid-feedback">L'adresse de départ est inconnue.</div>
           </div>
         </div>
 
@@ -52,6 +52,7 @@
             <input type="text" class="form-control" id="adresse_destination" name="lieuDestination"
               [(ngModel)]="infoCovoit.adresseDestination" #lieuDestination="ngModel" placeholder="Gare de Lyon"
               required>
+              <div *ngIf="lieuDestination.dirty && lieuDestination.invalid" class="invalid-feedback">L'adresse de destination est inconnue.</div>
 
           </div>
         </div>
@@ -118,7 +119,7 @@
 
             <input type="text" class="form-control is-invalid" id="imma" name="immatriculation"
               [(ngModel)]="infoCovoit.immatriculation" #immatriculation="ngModel" required>
-              <!-- <div class="invalid-feedback">
+            <!-- <div class="invalid-feedback">
                 Please provide a valid coucou.
               </div> -->
 
@@ -135,9 +136,11 @@
           <!--BARRE RECHERCHE MARQUE VEHICULE-->
           <div class="col-md-4">
 
-            <input type="text" class="form-control is-invalid" id="marque_vehicule" name="marque" [(ngModel)]="infoCovoit.marque"
-              #marque="ngModel" required>
-              <!-- <div class="invalid-feedback">
+            <input type="text" class="form-control is-invalid" id="marque_vehicule" name="marque"
+              [(ngModel)]="infoCovoit.marque" #marque="ngModel" required>
+              <div *ngIf="marque.dirty && marque.invalid" class="invalid-feedback">La marque est obligatoire.</div>
+
+            <!-- <div class="invalid-feedback">
                 Please provide a valid city.
               </div> -->
 
@@ -155,6 +158,7 @@
 
             <input type="text" class="form-control" id="modele_vehicule" name="modele" [(ngModel)]="infoCovoit.modele"
               #modele="ngModel" required>
+              <div *ngIf="modele.dirty && modele.invalid" class="invalid-feedback">Le modèle est obligatoire.</div>
 
           </div>
         </div>
@@ -169,8 +173,8 @@
           <div class="col-md-2">
 
             <input type="number" class="form-control" id="places_vehicule" name="placesDispos"
-              [(ngModel)]="infoCovoit.nombrePassager" #placesDispos="ngModel" min="1" max="20" value="1" required>
-
+              [(ngModel)]="infoCovoit.nbPlaceDispo" #placesDispos="ngModel" min="1" max="20" value="1" required>
+              <div *ngIf="placesDispos.dirty && placesDispos.invalid" class="invalid-feedback">Le nombre de places doit être compris entre 1 et 20. </div>
           </div>
         </div>
 
@@ -183,27 +187,76 @@
           <strong>Date et horaire</strong>
         </h5>
       </mdb-card-header>
-      <mdb-card-body class="px-lg-5 pt-0"></mdb-card-body>
-      <div class="row align-items-center mt-3 mb-3">
+      <mdb-card-body class="px-lg-5 pt-0">
+        <div class="row align-items-center mt-3 mb-3">
 
-        <div class="col-md-2 ml-5 mr-3">
+          <div class="col-md-3">
 
-          <label for="dateDebut" class="ml-2">Date / Heure :</label>
+            <label for="dateDebut" class="text-center mt-2">Date / Heure :</label>
 
-        </div>
+          </div>
 
-        <div class="col-md-3 ml-5">
-          <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
-            [(ngModel)]="infoCovoit.dateDeDepart" min="2019-03-30" #dateDebut="ngModel" data-error="" required />
-        </div>
+          <div class="col-md-3">
+            <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
+              [(ngModel)]="infoCovoit.dateDeDepart" min="2019-08-25" #dateDebut="ngModel" data-error="" required />
+          </div>
 
-        <div class="col-md-3">
+
+          <!--<div class="col-md-3">
           <input class="form-control" type="time" id="appt" name="appt" value="00:00"
             [(ngModel)]="infoCovoit.heureDeDepart" #heureDepart="ngModel" required>
+        </div> -->
+          <div class="col-md-2">
+            <select class="custom-select mr-sm-2 mb-1 form-control" id="heureDepart" name="heureDepart"
+              [(ngModel)]="infoCovoit.heureDeDepart" #heureDepart="ngModel" required>
+              <option value="00">00</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+
+          </div>
+
+          <div class="text-center mt-2">
+
+            <p>H</p>
+
+          </div>
+
+          <div class="col-md-2">
+            <select class="custom-select mr-sm-2 mb-1" id="minuteDepart" name="minuteDepart"
+              [(ngModel)]="infoCovoit.minuteDeDepart" #minuteDepart="ngModel" required>
+              <option value="00">00</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+
         </div>
-
-
-      </div>
+      </mdb-card-body>
     </mdb-card>
   </div>
 
@@ -246,7 +299,7 @@
               <p>{{marque.value}}</p>
               <p>{{modele.value}}</p>
               <p>{{placesDispos.value}}</p>
-              <p>{{dateDebut.value}} / {{heureDepart.value}}</p>
+              <p>{{dateDebut.value}} / {{heureDepart.value}} H {{minuteDepart.value}}</p>
             </div>
 
           </div>
@@ -262,49 +315,3 @@
     </div>
   </div>
 </form>
-
-<!-- <div class="col-md-1">
-          <form>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #heure required>
-              <option value="00">00</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-            </select>
-
-          </form>
-        </div>
-
-         <div class="col-md-1">
-          <form>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #minutes required>
-              <option value="00">00</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-            </select>
-
-          </form>
-        </div> -->

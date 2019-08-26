@@ -1,51 +1,63 @@
-  <div class="mb-5">
-    <h1>Vos annonces</h1>
-  </div>
+<div class="mb-5">
+  <h1>Vos annonces</h1>
+</div>
 
-  <div class="font-weight-bold mb-4 d-flex justify-content-end">
-      <a routerLink="/annonces/creer"><button type="button" class="btn btn-outline-dark btn-sm">Créer une nouvelle annonce</button></a>
-    </div>
+<div class="font-weight-bold mb-4 d-flex justify-content-end">
+  <a routerLink="/annonces/creer"><button type="button" class="btn btn-outline-dark btn-sm">Créer une nouvelle
+      annonce</button></a>
+</div>
 
-  <p class="font-weight-bold">Annonces en cours</p>
-  <div>
-      <table mdbTable bordered="true">
-          <thead>
-            <tr class="primary-color white-text">
-              <th>Date / Heure de départ</th>
-              <th>Lieu de départ</th>
-              <th>Lieu de destination</th>
-              <th>Nombre de voyageurs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>22/02/2018 12:00</td>
-              <td>Gare de Nantes</td>
-              <td>Gare de Lyon</td>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </table>
-  </div>
+<p class="font-weight-bold">Annonces en cours</p>
+<div>
+  <table mdbTable bordered="true">
+    <thead>
+      <tr class="primary-color white-text">
+        <th>Date / Heure de départ</th>
+        <th>Lieu de départ</th>
+        <th>Lieu de destination</th>
+        <th>Nombre de voyageurs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>22/02/2018 12:00</td>
+        <td>Gare de Nantes</td>
+        <td>Gare de Lyon</td>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  <p class="font-weight-bold">Historique</p>
-  <div>
-      <table mdbTable bordered="true">
-          <thead>
-            <tr class="primary-color white-text">
-              <th>Date / Heure de départ</th>
-              <th>Lieu de départ</th>
-              <th>Lieu de destination</th>
-              <th>Nombre de voyageurs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>22/02/2018 12:00</td>
-              <td>Gare de Nantes</td>
-              <td>Gare de Lyon</td>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </table>
-  </div>
+<p class="font-weight-bold">Historique</p>
+<div>
+  <table mdbTable bordered="true">
+    <thead>
+      <tr class="primary-color white-text">
+        <th>Date / Heure de départ</th>
+        <th>Lieu de départ</th>
+        <th>Lieu de destination</th>
+        <th>Nombre de voyageurs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>22/02/2018 12:00</td>
+        <td>Gare de Nantes</td>
+        <td>Gare de Lyon</td>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Affiche les annonces en cours-->
+<div *ngFor="let annonce of annoncesEnCours">
+  <p>{{annonce.vehicule.marque}}</p>
+</div>
+
+<!--Affiche les anciennes annonces-->
+
+<div *ngFor="let annonce of ancienneAnnonces">
+  <p>{{annonce.vehicule.marque}}</p>
+</div>

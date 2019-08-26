@@ -14,7 +14,7 @@ export class PublierAnnonceComponent implements OnInit {
   constructor(private _ajoutAnnonce: AnnonceCovoitService, private router:Router) { }
 
 
-  infoCovoit = new InfoCovoit("", "", "", "", "", "", "", "");
+  infoCovoit = new InfoCovoit("", "", "", "", "", "", "", "", "");
 
 
   creerAnnonce(){
