@@ -56,7 +56,10 @@
         <div class="mb-4 d-flex justify-content-end">
           <!--BOUTON PUBLIER-->
           <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="selection()"
-            [disabled]="ajoutAnnonce.invalid">Publier</button>
+            >Publier</button>
+
+
+
         </div>
       </mdb-card-body>
 
@@ -86,10 +89,46 @@
           <td>{{annonce?.collegue.nomComplet}}</td>
         <td>{{annonce?.vehicule.nbPlaceDispo}}</td>
           <td>
-            <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Réserver</button>
+            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Réserver</button>
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un covoiturage</h4>
+                    </div>
+                    <div class="modal-body">
+                      <dl class="row">
+                        <dt class="col-4">Départ</dt>
+                        <dd class="col-8">{{annonce?.itineraire.adresseDepart }}</dd>
+
+                        <dt class="col-4">Destination</dt>
+                        <dd class="col-8">{{annonce?.itineraire.adresseDest}}</dd>
+
+                        <dt class="col-4">Date/heure</dt>
+                        <dd class="col-8">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</dd>
+
+                        <dt class="col-4">Véhicule</dt>
+                        <dd class="col-8">{{annonce?.vehicule.marque+" "+annonce?.vehicule.modele}}</dd>
+
+                        <dt class="col-4">Chauffeur</dt>
+                        <dd class="col-8">{{annonce?.collegue.nomComplet}}</dd>
+                      </dl>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Réserver</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </td>
         </tr>
       </tbody>
     </table>
 
 </div>
+
+
