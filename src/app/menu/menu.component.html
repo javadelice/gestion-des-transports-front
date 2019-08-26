@@ -1,37 +1,40 @@
 <div *ngIf="!(collegueConnecte | async).estAnonyme()">
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
 
-        <mdb-navbar-brand><img src="assets/icons/logo.svg" width="50" height="50"></mdb-navbar-brand>
-        <links>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-                        Vos réservations<span class="caret"></span></a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="admin/chauffeurs" routerLinkActive="active">Chauffeurs</a>
-                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Véhicules</a>
-                    </div>
-                </li>
+    <mdb-navbar-brand><img src="assets/icons/logosmall.svg" width="50" height="50"></mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a  class="nav-link waves-light" mdbWavesEffect routerLink="/reservations">
+            Vos réservations</a>
+        </li>
 
-                <li class="nav-item">
-                    <a class="nav-link waves-light" mdbWavesEffect routerLink="/annonces" routerLinkActive="active">Vos annonces</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-light" mdbWavesEffect routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
-                </li>
-            </ul>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/annonces" routerLinkActive="active">Vos
+            annonces</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
+        </li>
+      </ul>
 
-            <form class="form-inline waves-light" mdbWavesEffect>
-                <div class="col justify-content-center mt-3 mb-5">
+      <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
+        <div class="md-form my-0">
+            <span class="navbar-text white-text">
+
                   Bonjour
-                <span>{{(collegueConnecte | async).nom}}</span>
-                <span>({{(collegueConnecte | async).prenom}})</span>
-              </div>
-              <div class="col justify-content-center mt-3 mb-5">
-                        <a class="nav-link waves-light" mdbWavesEffect (click)="seDeconnecter()">Se déconnecter</a>
-                </div>
-            </form>
-        </links>
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
+                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
 
-    </mdb-navbar>
-    </div>
+          </span>
+
+          <button mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" (click)="seDeconnecter()"
+                  mdbWavesEffect>Se déconnecter
+          </button>
+
+        </div>
+      </form>
+    </links>
+
+  </mdb-navbar>
+</div>
