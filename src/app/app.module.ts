@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TechComponent} from './tech/tech.component';
-import {MDBBootstrapModule, ModalModule} from 'angular-bootstrap-md';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AuthComponent} from './auth/auth.component';
 import {FormsModule} from '@angular/forms';
 import {StatutConnecteService} from './auth/statut-connecte.service';
@@ -54,8 +54,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     NgbModule,
-    FormsModule,
-    ModalModule.forRoot()
+    FormsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
