@@ -40,14 +40,14 @@
         <div class="row align-items-center mt-3">
           <div class="form-group col-md-4">
             <label for="dateDebut" class="ml-2">Date de départ</label>
-            <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
-               min="2019-03-30"  data-error="" required />
+            <input #saisie class="form-control mb-1" type="date" id="dateDebut" name="dateDebut" placeholder="yyyy-MM-dd"
+               min="2019-03-30"  data-error="" ng-model="example.value" required />
 
           </div>
           <div class="form-group col-md-4"></div>
           <div class="form-group col-md-4">
             <!--DISTANCE-->
-            <label class="ml-2">Distance </label>
+            <label class="ml-2">Distance</label>
             <div >
               <p>250km</p>
             </div>
@@ -55,15 +55,9 @@
         </div>
         <div class="mb-4 d-flex justify-content-end">
           <!--BOUTON PUBLIER-->
-          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="selection()"
-            >Publier</button>
-
-
-
+          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="selection(saisie.value)">Publier</button>
         </div>
       </mdb-card-body>
-
-
     </mdb-card>
   </div>
 </form>
@@ -85,7 +79,7 @@
           <th scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</th>
           <td>{{annonce?.itineraire.adresseDepart}}</td>
           <td>{{annonce?.itineraire.adresseDest}}</td>
-          <td>{{annonce?.vehicule.marque}}</td>
+          <td>{{annonce?.vehicule.marque}} {{annonce?.vehicule.modele}}</td>
           <td>{{annonce?.collegue.nomComplet}}</td>
         <td>{{annonce?.vehicule.nbPlaceDispo}}</td>
           <td>
