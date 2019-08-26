@@ -1,6 +1,16 @@
-<div class="container-fluid">
-  <h1>Vos réservations</h1>
+<h1>Vos réservations</h1>
+<div class="container-fluid m-1">
+  <div class="text-right">
+    <button type="button" class="btn btn-light" routerLink="/reservations/creer">Réserver un transport</button>
+  </div>
+</div>
 
-  <app-vehicule-resa></app-vehicule-resa>
+<button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
+  Covoiturage
+</button>
+
+<div class="" mdbCollapse #test="bs-collapse">
+  <app-covoit-resa></app-covoit-resa>
 
 </div>
+<app-vehicule-resa></app-vehicule-resa>
