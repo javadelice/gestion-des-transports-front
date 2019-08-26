@@ -97,7 +97,7 @@
 <div *ngIf="chauffeurs.length>0">
   <div class="card my-3" style="max-width: 540px;" *ngFor="let chauffeur of chauffeurs">
     <div class="card-header">
-      <h4 class="my-0 font-weight-normal">{{chauffeur.nom | uppercase}} {{chauffeur.prenom}}</h4>
+      <h4 class="my-0 font-weight-normal">{{chauffeur.nom}} {{chauffeur.prenom}}</h4>
     </div>
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -110,7 +110,7 @@
               <dt class="col-sm-5">Matricule:</dt>
               <dd class="col-sm-7">{{chauffeur.matricule}}</dd>
               <dt class="col-sm-5">Nom: </dt>
-              <dd class="col-sm-7">{{chauffeur.nom | uppercase}}</dd>
+              <dd class="col-sm-7">{{chauffeur.nom}}</dd>
               <dt class="col-sm-5">Prenom:</dt>
               <dd class="col-sm-7">{{chauffeur.prenom}}</dd>
               <dt class="col-sm-5">Role:</dt>
