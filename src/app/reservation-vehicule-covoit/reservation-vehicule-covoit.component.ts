@@ -9,7 +9,7 @@ import { AnnonceCovoitResa } from '../models/AnnonceCovoitResa';
 })
 export class ReservationVehiculeCovoitComponent implements OnInit {
 
-  annonces: AnnonceCovoitResa;
+  annonces: AnnonceCovoitResa[];
 
   headElements = ['Date / heure', 'Départ', 'Destination', 'Véhicule', 'Chauffeur', 'Places disponibles', ''];
 
@@ -20,7 +20,7 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
 
   selection(date: string) {
     this.srv.getReservationsCovoit(date)
-    .subscribe(annonces => this.srv.publier(annonces));
+    .subscribe(annonces => this.annonces = annonces);
   }
 
 

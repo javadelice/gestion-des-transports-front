@@ -17,7 +17,7 @@ export class CovoitResaService {
     this.subAnnoncesSelectionnees.next(uneAnnonce);
   }
 
-  abonnement(): Observable<AnnonceCovoitResa>{
+  abonnement(): Observable<AnnonceCovoitResa> {
     return this.subAnnoncesSelectionnees.asObservable();
   }
 
@@ -26,7 +26,7 @@ export class CovoitResaService {
   }
 
   getReservationsCovoit(date: string): Observable<AnnonceCovoitResa[]> {
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/creer`);
+    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/creer?date=${date}` );
   }
 
   getOldReservations(): Observable<AnnonceCovoitResa[]> {
