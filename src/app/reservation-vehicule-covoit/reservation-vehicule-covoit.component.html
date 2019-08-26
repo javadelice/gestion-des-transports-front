@@ -1,0 +1,66 @@
+<!--TITRE-->
+<div class="font-weight-bold mb-4">
+  <h3 class="mt-4">Critères</h3>
+</div>
+<!--PUBLICATION-->
+<!--(ngSubmit)="ajouterAnnonce()"#ajoutAnnonce="ngForm"-->
+<form (ngSubmit)="creerAnnonce()" #ajoutAnnonce="ngForm" class="was-validated">
+  <div class="mb-3">
+    <mdb-card>
+      <mdb-card-body class="px-lg-5 pt-0">
+        <div class="row align-items-center mt-3">
+
+          <div class="form-group col-md-4">
+
+            <!--ADRESSE DÉPART-->
+            <label for="adresse_depart" class="ml-2">Adresse de départ </label>
+            <!--BARRE RECHERCHE DÉPART-->
+            <input type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
+              [(ngModel)]="infoCovoit.adresseDepart" #lieuDepart="ngModel" placeholder="Gare de Nantes" required>
+          </div>
+
+          <div class="form-group col-md-4">
+            <!--ADRESSE DESTINATION-->
+            <label for="adresse_destination" class="ml-2">Adresse de destination </label>
+            <!--BARRE RECHERCHE DESTINATION-->
+            <input type="text" class="form-control" id="adresse_destination" name="lieuDestination"
+              [(ngModel)]="infoCovoit.adresseDestination" #lieuDestination="ngModel" placeholder="Gare de Lyon"
+              required>
+          </div>
+
+          <div class="form-group col-md-4">
+            <!--DURÉE DU TRAJET-->
+            <label class="ml-2">Durée du trajet </label>
+            <div *ngIf="lieuDepart.value && lieuDestination.value">
+              <p>2H51</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-center mt-3">
+          <div class="form-group col-md-4">
+            <label for="dateDebut" class="ml-2">Date de départ</label>
+            <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
+              [(ngModel)]="infoCovoit.dateDeDepart" min="2019-03-30" #dateDebut="ngModel" data-error="" required />
+
+          </div>
+          <div class="form-group col-md-4"></div>
+          <div class="form-group col-md-4">
+            <!--DISTANCE-->
+            <label class="ml-2">Distance </label>
+            <div *ngIf="lieuDepart.value && lieuDestination.value">
+              <p>250km</p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 d-flex justify-content-end">
+          <!--BOUTON PUBLIER-->
+          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()"
+            [disabled]="ajoutAnnonce.invalid">Publier</button>
+        </div>
+      </mdb-card-body>
+
+
+    </mdb-card>
+  </div>
+</form>
