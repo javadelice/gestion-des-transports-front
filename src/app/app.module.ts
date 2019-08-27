@@ -22,7 +22,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path: 'auth', component: AuthComponent},
+  { path: 'connexion', component: AuthComponent},
   {path: 'reservations', component : ReservationComponent, canActivate: [StatutConnecteService]},
   {path: 'reservations/creer', component : ReservationCreerComponent, canActivate: [StatutConnecteService]},
   {path: 'annonces', component: AnnoncesComponent, canActivate: [StatutConnecteService]},
