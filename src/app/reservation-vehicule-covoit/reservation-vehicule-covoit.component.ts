@@ -23,6 +23,9 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
     .subscribe(annonces => this.annonces = annonces);
   }
 
+  confirmBooking() {
+
+  }
 
 
 }

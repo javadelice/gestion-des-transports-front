@@ -27,7 +27,7 @@ export class CovoitResaService {
 
   getReservationsCovoit(date: string, lieuDepart: string, lieuArrivee: string): Observable<AnnonceCovoitResa[]> {
     // tslint:disable-next-line: max-line-length
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/creer?date=${date}&lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
+    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?date=${date}&lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
   }
 
   getOldReservations(): Observable<AnnonceCovoitResa[]> {
