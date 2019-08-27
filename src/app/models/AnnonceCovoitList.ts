@@ -8,7 +8,8 @@ export class AnnonceCovoitList{
     public collegue: Conducteur,
     public itineraire: Itineraire,
     public vehicule: Vehicule,
-    public dateTime: Date) {
+    public dateTime: Date,
+    public nbVoyageurs: number) {
     }
 
 }

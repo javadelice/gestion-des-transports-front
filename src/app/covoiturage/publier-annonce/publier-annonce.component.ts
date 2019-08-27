@@ -18,9 +18,10 @@ export class PublierAnnonceComponent implements OnInit {
 
 
   creerAnnonce(){
-    this._ajoutAnnonce.ajouterAnnonceCovoit(this.infoCovoit).subscribe(() => {location.reload();});
+    this._ajoutAnnonce.ajouterAnnonceCovoit(this.infoCovoit).subscribe();
   }
 
+  // () => {location.reload();}
 
   ngOnInit() {
   }

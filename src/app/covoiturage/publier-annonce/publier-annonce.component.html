@@ -13,7 +13,7 @@
   <div class="mb-3">
     <mdb-card>
       <!--ITINERAIRE-->
-      <mdb-card-header class="primary-color white-text">
+      <mdb-card-header class="blue-gradient white-text">
         <h5>
           <strong>Itinéraire</strong>
         </h5>
@@ -98,7 +98,7 @@
 
       <!--VEHICULE-->
 
-      <mdb-card-header class="primary-color white-text">
+      <mdb-card-header class="blue-gradient white-text">
         <h5>
           <strong>Véhicule</strong>
         </h5>
@@ -171,10 +171,10 @@
           </div>
           <!--BARRE RECHERCHE PLACE DISPONIBLE-->
           <div class="col-md-2">
-
             <input type="number" class="form-control" id="places_vehicule" name="placesDispos"
               [(ngModel)]="infoCovoit.nbPlaceDispo" #placesDispos="ngModel" min="1" max="20" value="1" required>
-              <div *ngIf="placesDispos.dirty && placesDispos.invalid" class="invalid-feedback">Le nombre de places doit être compris entre 1 et 20. </div>
+              <!-- <div *ngIf="placesDispos.dirty && placesDispos.invalid" class="invalid-feedback">Le nombre de places doit être compris entre 1 et 20. </div> -->
+              <div *ngIf="placesDispos.dirty &&  (placesDispos.value > 20 || placesDispos.value < 1)" class="invalid-feedback"><p class="text-justify">Le nombre de places doit être compris entre 1 et 20.</p></div>
           </div>
         </div>
 
@@ -182,7 +182,7 @@
 
       <!--DATE ET HORAIRE-->
 
-      <mdb-card-header class="primary-color white-text">
+      <mdb-card-header class="blue-gradient white-text">
         <h5>
           <strong>Date et horaire</strong>
         </h5>
@@ -198,7 +198,7 @@
 
           <div class="col-md-3">
             <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
-              [(ngModel)]="infoCovoit.dateDeDepart" min="2019-08-25" #dateDebut="ngModel" data-error="" required />
+              [(ngModel)]="infoCovoit.dateDeDepart" min="2019-08-27" #dateDebut="ngModel" required />
           </div>
 
 
@@ -307,7 +307,7 @@
 
         <!--BOUTON ANNULER / CONFIRMER-->
         <div class="modal-footer">
-          <button type="button" mdbBtn class="waves-light danger-color-dark" aria-label="Close"
+          <button type="button" mdbBtn class="waves-light danger-color-dark text-white" aria-label="Close"
             (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
           <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Confirmer</button>
         </div>

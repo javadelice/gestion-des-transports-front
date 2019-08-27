@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   template: `
 
     <mdb-card class="animated zoomIn">
-      <mdb-card-header class="primary-color white-text">
+      <mdb-card-header class="blue-gradient white-text">
         <h4 class="text-center">Authentification</h4>
       </mdb-card-header>
       <mdb-card-body>
@@ -26,9 +26,9 @@ import {Router} from "@angular/router";
                 <li>admin@dev.fr / superpass / ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR</li>
                 <li>user@dev.fr / superpass / ROLE_UTILISATEUR</li>
               </ul>
-              
+
             </mdb-card-text>
-            
+
           </mdb-card-body>
         </mdb-card>
         <form>
@@ -53,7 +53,7 @@ import {Router} from "@angular/router";
         </form>
       </mdb-card-body>
     </mdb-card>
-    
+
   `,
   styles: []
 })
