@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
       value => {
         this.role = null;
         localStorage.clear();
-        this._router.navigate(['/auth']);
+        this._router.navigate(['/connexion']);
       }
     );
   }
