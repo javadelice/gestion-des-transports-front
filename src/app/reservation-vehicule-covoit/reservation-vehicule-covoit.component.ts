@@ -18,8 +18,8 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
   ngOnInit() {
   }
 
-  selection(date: string) {
-    this.srv.getReservationsCovoit(date)
+  selection(date: string, lieuDepart: string, lieuArrivee: string) {
+    this.srv.getReservationsCovoit(date, lieuDepart, lieuArrivee)
     .subscribe(annonces => this.annonces = annonces);
   }
 
