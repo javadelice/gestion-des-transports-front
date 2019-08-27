@@ -23,8 +23,11 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
     .subscribe(annonces => this.annonces = annonces);
   }
 
-  confirmBooking() {
-
+  confirmBooking(annonce: AnnonceCovoitResa) {
+    this.srv.creerResaCovoit(annonce).subscribe(success => {
+      // fermer modal
+      // redirect -> afficher list Resas
+    }, err => '');
   }
 
 

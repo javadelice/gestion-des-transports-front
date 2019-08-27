@@ -33,4 +33,9 @@ export class CovoitResaService {
   getOldReservations(): Observable<AnnonceCovoitResa[]> {
     return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations_old`);
   }
+
+creerResaCovoit (annonce: AnnonceCovoitResa) {
+  return this._http.post<AnnonceCovoitResa>(`${environment.baseUrl}collaborateur/reservations/covoit/creer`, annonce);
+}
+
 }

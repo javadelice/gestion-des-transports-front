@@ -7,7 +7,8 @@ export class AnnonceCovoitResa {
   public collegue: ChauffeurCovoit,
   public itineraire: Itineraire,
   public vehicule: Vehicule,
-  public dateTime: Date) {
+  public dateTime: Date,
+  public nbPlacesLibres: number) {
 
   }
 }
