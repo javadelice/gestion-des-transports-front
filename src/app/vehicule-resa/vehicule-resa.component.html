@@ -1,60 +1,46 @@
 <div class="container-fluid">
-  <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
-    Véhicules de société
-  </button>
+  <h2>Réservations en cours</h2>
+  <table mdbTable bordered="true">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
 
-  <div class="container" mdbCollapse #test="bs-collapse">
-    <h5>Réservations en cours</h5>
-    <table mdbTable bordered="true">
-      <thead>
-        <tr>
-          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-        </tr>
-      </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let reservationVehicule of reservations">
+        <th scope="row">{{reservationVehicule.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
+        <th scope="row">{{reservationVehicule.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
+        <td>{{reservationVehicule.vehiculeSociete.immatriculation}}</td>
+        <td>{{reservationVehicule.vehiculeSociete.marque}}</td>
+        <td>{{reservationVehicule.vehiculeSociete.modele}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-      <tbody>
-        <tr mdbTableCol *ngFor="let reservationVehicule of reservations">
-          <th scope="row">{{reservationVehicule.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
-          <th scope="row">{{reservationVehicule.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
-          <td>{{reservationVehicule.vehiculeSociete.immatriculation}}</td>
-          <td>{{reservationVehicule.vehiculeSociete.marque}}</td>
-          <td>{{reservationVehicule.vehiculeSociete.modele}}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container" *ngIf="historique.length > 0">
+  <h2>Historique</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr mdbTableCol *ngFor="let historiques of historique">
+        <th scope="row">{{historiques.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
+        <th scope="row">{{historiques.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
+        <td>{{historiques.vehiculeSociete.immatriculation}}</td>
+        <td>{{historiques.vehiculeSociete.marque}}</td>
+        <td>{{historiques.vehiculeSociete.modele}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
   </div>
-
-
-  <div class="container" *ngIf="historique.length > 0">
-    <div class="" mdbCollapse #test="bs-collapse">
-      <h5>Historique</h5>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr mdbTableCol *ngFor="let histo of historique">
-            <th scope="row">{{histo.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
-            <th scope="row">{{histo.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
-            <td>{{histo.vehiculeSociete.immatriculation}}</td>
-            <td>{{histo.vehiculeSociete.marque}}</td>
-            <td>{{histo.vehiculeSociete.modele}}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-        </ngb-pagination>
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-          <option [ngValue]="2">2 items per page</option>
-          <option [ngValue]="5">5 items per page</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
 </div>

@@ -11,6 +11,12 @@
 
 <div class="" mdbCollapse #test="bs-collapse">
   <app-covoit-resa></app-covoit-resa>
-
 </div>
-<app-vehicule-resa></app-vehicule-resa>
+
+<button mdbBtn color="primary" class="waves-light" type="button" (click)="test1.toggle()" mdbWavesEffect>
+  Véhicules de société
+</button>
+
+<div class="" mdbCollapse #test1="bs-collapse">
+  <app-vehicule-resa></app-vehicule-resa>
+</div>
