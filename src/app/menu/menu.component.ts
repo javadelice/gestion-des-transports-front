@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   collegueConnecte: Observable<Collegue>;
+  roleConnect: Observable<string>;
+  role: string;
+
 
   constructor(private _authSrv: AuthService, private _router: Router) {
 
@@ -22,7 +25,11 @@ export class MenuComponent implements OnInit {
    */
   seDeconnecter() {
     this._authSrv.seDeconnecter().subscribe(
-      value => this._router.navigate(['/auth'])
+      value => {
+        this.role = null;
+        localStorage.clear();
+        this._router.navigate(['/connexion']);
+      }
     );
   }
 
@@ -32,8 +39,9 @@ export class MenuComponent implements OnInit {
    * Celui lui permet de rester à jour en fonction des connexions et déconnexions.
    */
   ngOnInit(): void {
-
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
+    this.roleConnect = this._authSrv.roleUserObs;
+    this.role = localStorage.getItem('roleUser');
   }
 
 

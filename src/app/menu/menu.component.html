@@ -1,5 +1,5 @@
-<div *ngIf="!(collegueConnecte | async).estAnonyme()" class="mb-5">
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient">
+<div class="mb-5" *ngIf="!(collegueConnecte | async).estAnonyme()">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" *ngIf="role === 'ROLE_UTILISATEUR' || (roleConnect | async) === 'ROLE_UTILISATEUR'">
 
     <mdb-navbar-brand><img src="assets/icons/logosmall.svg" width="50" height="50"></mdb-navbar-brand>
     <links>
@@ -15,6 +15,74 @@
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect routerLink="/statistiques" routerLinkActive="active">Statistiques</a>
+        </li>
+      </ul>
+
+      <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
+        <div class="md-form my-0">
+            <span class="navbar-text white-text">
+
+                  Bonjour
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
+                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
+
+          </span>
+
+          <button mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" (click)="seDeconnecter()"
+                  mdbWavesEffect>Se déconnecter
+          </button>
+
+        </div>
+      </form>
+    </links>
+
+  </mdb-navbar>
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark peach-gradient" *ngIf="role === 'ROLE_ADMINISTRATEUR' || (roleConnect | async) === 'ROLE_ADMINISTRATEUR'">
+
+    <mdb-navbar-brand><img src="assets/icons/logosmall.svg" width="50" height="50"></mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a  class="nav-link waves-light" mdbWavesEffect routerLink="/chauffeurs">
+            Chauffeurs</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/vehicules" routerLinkActive="active">Véhicules </a>
+        </li>
+      </ul>
+
+      <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
+        <div class="md-form my-0">
+            <span class="navbar-text white-text">
+
+                  Bonjour
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
+                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
+
+          </span>
+
+          <button mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" (click)="seDeconnecter()"
+                  mdbWavesEffect>Se déconnecter
+          </button>
+
+        </div>
+      </form>
+    </links>
+
+  </mdb-navbar>
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark aqua-gradient" *ngIf="role === 'ROLE_CHAUFFEUR' || (roleConnect | async) === 'ROLE_CHAUFFEUR'">
+
+    <mdb-navbar-brand><img src="assets/icons/logosmall.svg" width="50" height="50"></mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a  class="nav-link waves-light" mdbWavesEffect routerLink="/planning">
+            Planning</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/occupation" routerLinkActive="active">Occupation</a>
         </li>
       </ul>
 

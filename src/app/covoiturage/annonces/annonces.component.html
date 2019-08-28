@@ -8,7 +8,7 @@
 </div>
 
 <p class="font-weight-bold">Annonces en cours</p>
-<div *ngIf="annoncesEnCours.length >= 1; else elseEnCours">
+<div *ngIf="annoncesEnCours?.length >= 1; else elseEnCours">
   <table mdbTable bordered="true">
     <thead>
       <tr class="blue-gradient white-text">
@@ -68,7 +68,7 @@
 <!-- AFFICHAGE HISTORIQUE -->
 <div class="container-fluide">
   <p class="font-weight-bold">Historique</p>
-  <div *ngIf="ancienneAnnonces.length >= 1; else elseHistorique">
+  <div *ngIf="ancienneAnnonces?.length >= 1; else elseHistorique">
     <table mdbTable bordered="true">
       <thead>
         <tr class="blue-gradient white-text">
@@ -77,7 +77,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let annonce of annoncesHisto">
-          <th scope="row">{{annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
+          <th scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
           <td>{{annonce?.itineraire.adresseDepart}}</td>
           <td>{{annonce?.itineraire.adresseDest}}</td>
           <td>{{annonce?.nbVoyageurs}}</td>
