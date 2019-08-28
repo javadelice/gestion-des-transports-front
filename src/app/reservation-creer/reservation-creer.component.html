@@ -1,3 +1,22 @@
-<p>
-  reservation-creer works!
-</p>
+<h1>Réserver un véhicule</h1>
+<div class="container-fluid m-1">
+  <div class="text-left">
+    <a routerLink="/reservations">Réserver un transport</a>
+  </div>
+</div>
+
+<!-- <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
+  Covoiturage
+</button>
+
+<div class="" mdbCollapse #test="bs-collapse">
+  <app-covoit-resa></app-covoit-resa>
+</div> -->
+
+<button mdbBtn color="primary" class="waves-light" type="button" (click)="test2.toggle()" mdbWavesEffect>
+  Véhicules de société
+</button>
+
+<div class="" mdbCollapse #test2="bs-collapse">
+  <app-resa-vehicule-creer></app-resa-vehicule-creer>
+</div>

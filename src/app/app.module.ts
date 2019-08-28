@@ -23,6 +23,7 @@ import {AnnoncesComponent} from './annonces/annonces.component';
 import {StatistiquesComponent} from './statistiques/statistiques.component';
 import {MenuComponent} from './menu/menu.component';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
+import { ResaVehiculeCreerComponent } from './resa-vehicule-creer/resa-vehicule-creer.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -48,7 +49,8 @@ const routes: Routes = [
     StatistiquesComponent,
     AnnoncesComponent,
     ChauffeursComponent,
-    VehiculeResaComponent
+    VehiculeResaComponent,
+    ResaVehiculeCreerComponent,
   ],
   imports: [
     BrowserModule,
