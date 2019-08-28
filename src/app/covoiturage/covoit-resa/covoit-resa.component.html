@@ -10,7 +10,7 @@
     <tr mdbTableCol *ngFor="let annonce of annonces">
       <th scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</th>
       <td>{{annonce.itineraire.adresseDepart}}</td>
-      <td>{{annonce.itineraire.adresseDest+annonce.itineraire.duree}}</td>
+      <td>{{annonce.itineraire.adresseDest}}</td>
       <td>
         <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
 

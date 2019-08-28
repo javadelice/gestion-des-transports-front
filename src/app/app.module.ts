@@ -21,6 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import { ReservationVehiculeCovoitComponent } from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -55,7 +56,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     NgbModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
