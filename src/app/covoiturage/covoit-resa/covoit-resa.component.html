@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" class="my-3">
   <h2>Réservations en cours</h2>
   <table mdbTable bordered="true">
     <thead>
@@ -13,6 +13,42 @@
       <td>{{annonce.itineraire.adresseDest}}</td>
       <td>
         <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
+        <button type="button" class="btn btn-danger" (click)="openModal(content)">Annuler</button>
+
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel">Etes-vous sur de vouloir annuler votre covoiturage?</h4>
+          </div>
+          <div class="modal-body">
+            <dl class="row">
+              <dt class="col-4">Départ</dt>
+              <dd class="col-8">{{annonce?.itineraire.adresseDepart }}</dd>
+
+              <dt class="col-4">Destination</dt>
+              <dd class="col-8">{{annonce?.itineraire.adresseDest}}</dd>
+
+              <dt class="col-4">Date/heure</dt>
+              <dd class="col-8">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</dd>
+
+              <dt class="col-4">Véhicule</dt>
+              <dd class="col-8">{{annonce?.vehicule.marque+" "+annonce?.vehicule.modele}}</dd>
+
+              <dt class="col-4">Chauffeur</dt>
+              <dd class="col-8">{{annonce?.collegue.nomComplet}}</dd>
+
+              <div class="alert alert-danger" role="alert">
+                Affichage message d'erreur
+              </div>
+            </dl>
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" mdbWavesEffect>Confirmer</button>
+          </div>
+    </ng-template>
 
         <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -58,7 +94,7 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      <th *ngFor="let head of headElementsHisto" scope="col">{{head}} </th>
     </tr>
     </thead>
     <tbody>
@@ -66,6 +102,7 @@
       <th scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm:ss'}}</th>
       <td>{{annonce?.itineraire.adresseDepart}}</td>
       <td>{{annonce?.itineraire.adresseDest}}</td>
+      <td>statut</td>
       <td>
         <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
 
