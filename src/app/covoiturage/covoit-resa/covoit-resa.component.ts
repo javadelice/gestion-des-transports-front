@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AnnonceCovoitResa} from '../../models/AnnonceCovoitResa';
 import {CovoitResaService} from './covoit-resa.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { ResaCovoit } from 'src/app/models/ResaCovoit';
 
 
 @Component({
@@ -11,17 +12,17 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class CovoitResaComponent implements OnInit  {
 
-  annonces: AnnonceCovoitResa[];
-  private _annoncesHisto: AnnonceCovoitResa[] = Array();
-  headElements = ['Date / heure', 'Départ', 'Destination', ''];
+  resas: ResaCovoit[];
+  private _resasHisto: ResaCovoit[] = Array();
+  headElements = ['Date / heure', 'Départ', 'Destination', 'Statut', ''];
   headElementsHisto = ['Date / heure', 'Départ', 'Destination', 'Statut', ''];
 
   page = 1;
   pageSize = 5;
   collectionSize;
 
-  get annoncesHisto(): AnnonceCovoitResa[] {
-    return this._annoncesHisto
+  get resasHisto(): ResaCovoit[] {
+    return this._resasHisto
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
@@ -29,13 +30,13 @@ export class CovoitResaComponent implements OnInit  {
   }
 
   ngOnInit() {
-    this.srv.getReservations().subscribe(annonces => {
-      this.annonces = annonces;
+    this.srv.getReservations().subscribe(resasCovoit => {
+      this.resas = resasCovoit;
 
     });
-    this.srv.getOldReservations().subscribe(annonces => {
-      this._annoncesHisto = annonces;
-      this.collectionSize = annonces.length;
+    this.srv.getOldReservations().subscribe(resasCovoit => {
+      this._resasHisto = resasCovoit;
+      this.collectionSize = resasCovoit.length;
     });
   }
 
