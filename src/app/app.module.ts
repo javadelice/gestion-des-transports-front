@@ -23,6 +23,7 @@ import {MenuComponent} from './menu/menu.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
+import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -48,6 +49,7 @@ const routes: Routes = [
     StatistiquesComponent,
     AnnoncesComponent,
     ChauffeursComponent,
+    ReservationVehiculeCovoitComponent,
     VehiculeResaComponent
 
 
