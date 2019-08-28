@@ -8,7 +8,6 @@
 </div>
 
 <!--PUBLICATION-->
-<!--(ngSubmit)="ajouterAnnonce()"#ajoutAnnonce="ngForm"-->
 <form (ngSubmit)="creerAnnonce()" #ajoutAnnonce="ngForm" class="was-validated">
   <div class="mb-3">
     <mdb-card>
@@ -34,7 +33,8 @@
 
             <input type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
               [(ngModel)]="infoCovoit.adresseDepart" #lieuDepart="ngModel" placeholder="Gare de Nantes" required>
-              <div *ngIf="lieuDepart.dirty && lieuDepart.invalid" class="invalid-feedback">L'adresse de départ est inconnue.</div>
+            <div *ngIf="lieuDepart.dirty && lieuDepart.invalid" class="invalid-feedback">L'adresse de départ est
+              inconnue.</div>
           </div>
         </div>
 
@@ -52,7 +52,8 @@
             <input type="text" class="form-control" id="adresse_destination" name="lieuDestination"
               [(ngModel)]="infoCovoit.adresseDestination" #lieuDestination="ngModel" placeholder="Gare de Lyon"
               required>
-              <div *ngIf="lieuDestination.dirty && lieuDestination.invalid" class="invalid-feedback">L'adresse de destination est inconnue.</div>
+            <div *ngIf="lieuDestination.dirty && lieuDestination.invalid" class="invalid-feedback">L'adresse de
+              destination est inconnue.</div>
 
           </div>
         </div>
@@ -119,9 +120,9 @@
 
             <input type="text" class="form-control is-invalid" id="imma" name="immatriculation"
               [(ngModel)]="infoCovoit.immatriculation" #immatriculation="ngModel" required>
-            <!-- <div class="invalid-feedback">
-                Please provide a valid coucou.
-              </div> -->
+            <div *ngIf="immatriculation.dirty && immatriculation.invalid " class="invalid-feedback">L'immatriculation
+              est obligatoire</div>
+
 
           </div>
         </div>
@@ -138,7 +139,7 @@
 
             <input type="text" class="form-control is-invalid" id="marque_vehicule" name="marque"
               [(ngModel)]="infoCovoit.marque" #marque="ngModel" required>
-              <div *ngIf="marque.dirty && marque.invalid" class="invalid-feedback">La marque est obligatoire.</div>
+            <div *ngIf="marque.dirty && marque.invalid" class="invalid-feedback">La marque est obligatoire.</div>
 
             <!-- <div class="invalid-feedback">
                 Please provide a valid city.
@@ -158,7 +159,7 @@
 
             <input type="text" class="form-control" id="modele_vehicule" name="modele" [(ngModel)]="infoCovoit.modele"
               #modele="ngModel" required>
-              <div *ngIf="modele.dirty && modele.invalid" class="invalid-feedback">Le modèle est obligatoire.</div>
+            <div *ngIf="modele.dirty && modele.invalid" class="invalid-feedback">Le modèle est obligatoire.</div>
 
           </div>
         </div>
@@ -172,9 +173,11 @@
           <!--BARRE RECHERCHE PLACE DISPONIBLE-->
           <div class="col-md-2">
             <input type="number" class="form-control" id="places_vehicule" name="placesDispos"
-              [(ngModel)]="infoCovoit.nbPlaceDispo" #placesDispos="ngModel" min="1" max="20" value="1" required>
-              <!-- <div *ngIf="placesDispos.dirty && placesDispos.invalid" class="invalid-feedback">Le nombre de places doit être compris entre 1 et 20. </div> -->
-              <div *ngIf="placesDispos.dirty &&  (placesDispos.value > 20 || placesDispos.value < 1)" class="invalid-feedback"><p class="text-justify">Le nombre de places doit être compris entre 1 et 20.</p></div>
+              [(ngModel)]="infoCovoit.nbPlaceDispo" #placesDispos="ngModel" min="1" max="20" required>
+            <div *ngIf="placesDispos.dirty &&  (placesDispos.value > 20 || placesDispos.value < 1)"
+              class="invalid-feedback">
+              <p>Le nombre de places doit être compris entre 1 et 20.</p>
+            </div>
           </div>
         </div>
 
@@ -196,16 +199,12 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-4">
             <input class="form-control mb-1" type="date" id="dateDebut" name="dateDebut"
-              [(ngModel)]="infoCovoit.dateDeDepart" min="2019-08-27" #dateDebut="ngModel" required />
+              [(ngModel)]="infoCovoit.dateDeDepart" #dateDebut="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required/>
+            <div *ngIf="dateDebut.dirty && dateDebut.invalid " class="invalid-feedback">La date est obligatoire</div>
           </div>
 
-
-          <!--<div class="col-md-3">
-          <input class="form-control" type="time" id="appt" name="appt" value="00:00"
-            [(ngModel)]="infoCovoit.heureDeDepart" #heureDepart="ngModel" required>
-        </div> -->
           <div class="col-md-2">
             <select class="custom-select mr-sm-2 mb-1 form-control" id="heureDepart" name="heureDepart"
               [(ngModel)]="infoCovoit.heureDeDepart" #heureDepart="ngModel" required>
@@ -279,7 +278,7 @@
         </div>
         <!--ÉLÉMENTS DE PUBLICATION-->
         <div class="modal-body">
-          <div class="row align-items-center mt-3 mb-3">
+          <div class="row justify-content-center align-items-center mt-3 mb-3">
 
             <div class="col-md-5 ml-1">
               <div class="font-weight-bold">
@@ -302,13 +301,21 @@
               <p>{{dateDebut.value}} / {{heureDepart.value}} H {{minuteDepart.value}}</p>
             </div>
 
+            <div *ngIf="errorValidation == true" class="alert alert-danger mt-2" role="alert">
+              <p>Impossible de créer l'annonce</p>
+              <ul>
+                <li *ngIf="backEndErrors.dateDebut">{{backEndErrors.dateDebut}}</li>
+                <li *ngIf="backEndErrors.nbPlaceDispo">{{backEndErrors.nbPlaceDispo}}</li>
+              </ul>
+            </div>
+
           </div>
         </div>
 
         <!--BOUTON ANNULER / CONFIRMER-->
         <div class="modal-footer">
           <button type="button" mdbBtn class="waves-light danger-color-dark text-white" aria-label="Close"
-            (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+            (click)="delete() || basicModal.hide()" mdbWavesEffect>Annuler</button>
           <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Confirmer</button>
         </div>
       </div>

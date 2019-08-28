@@ -1,6 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { AnnonceCovoitService } from 'src/app/services/annonce.covoit.service';
 import { AnnonceCovoitList } from 'src/app/models/AnnonceCovoitList';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-annonces',
@@ -13,6 +14,7 @@ export class AnnoncesComponent implements OnInit {
 
   annoncesEnCours: AnnonceCovoitList[];
   ancienneAnnonces: AnnonceCovoitList [] = Array ();
+  msgError:string;
 
   headElements = ['Date / heure', 'Lieu de Départ', 'Lieu de Destination', 'Nombre de voyageurs'];
   page = 1;
@@ -26,7 +28,7 @@ export class AnnoncesComponent implements OnInit {
 
   ngOnInit() {
     this.annonceService.afficherAnnoncesEnCours().subscribe(annoncesEnCours =>
-      { this.annoncesEnCours = annoncesEnCours;});
+      {this.annoncesEnCours = annoncesEnCours;});
 
     this.annonceService.afficherAnciennesAnnonces().subscribe(ancienneAnnonces =>
       {this.ancienneAnnonces = ancienneAnnonces;
