@@ -17,12 +17,13 @@ import {VehiculeResaComponent} from './vehicule-resa/vehicule-resa.component';
 import {CovoitResaComponent} from './covoiturage/covoit-resa/covoit-resa.component';
 import {CovoitResaCreerComponent} from './covoiturage/covoit-resa-creer/covoit-resa-creer.component';
 import {ReservationCreerComponent} from './reservation-creer/reservation-creer.component';
-import {AnnoncesComponent} from './annonces/annonces.component';
+import {AnnoncesComponent} from './covoiturage/annonces/annonces.component';
 import {StatistiquesComponent} from './statistiques/statistiques.component';
 import {MenuComponent} from './menu/menu.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
+import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
 import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'reservations/creer', component : ReservationCreerComponent, canActivate: [StatutConnecteService]},
   {path: 'annonces', component: AnnoncesComponent, canActivate: [StatutConnecteService]},
   {path: 'statistiques', component: StatistiquesComponent, canActivate: [StatutConnecteService]},
+  { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -50,10 +52,8 @@ const routes: Routes = [
     AnnoncesComponent,
     ChauffeursComponent,
     ReservationVehiculeCovoitComponent,
-    VehiculeResaComponent
-
-
-
+    VehiculeResaComponent,
+    PublierAnnonceComponent
   ],
   imports: [
     BrowserModule,
