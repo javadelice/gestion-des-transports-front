@@ -16,7 +16,7 @@ export class AnnoncesComponent implements OnInit {
   ancienneAnnonces: AnnonceCovoitList [] = Array ();
   msgError:string;
 
-  headElements = ['Date / heure', 'Lieu de Départ', 'Lieu de Destination', 'Nombre de voyageurs'];
+  headElements = ['Date / heure', 'Lieu de Départ', 'Lieu de Destination', 'Nombre de voyageurs', 'Statut'];
   page = 1;
   pageSize = 5;
   collectionSize;

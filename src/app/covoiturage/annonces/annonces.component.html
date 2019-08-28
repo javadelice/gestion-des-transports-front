@@ -8,7 +8,7 @@
 </div>
 
 <p class="font-weight-bold">Annonces en cours</p>
-<div *ngIf="annoncesEnCours?.length >= 1; else elseEnCours">
+<div *ngIf="annoncesEnCours.length >= 1; else elseEnCours">
   <table mdbTable bordered="true">
     <thead>
       <tr class="blue-gradient white-text">
@@ -16,14 +16,16 @@
         <th>Lieu de départ</th>
         <th>Lieu de destination</th>
         <th>Nombre de voyageurs</th>
+        <th>Statut</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let annonce of annoncesEnCours">
-        <td scope="row">{{annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</td>
-        <td>{{annonce.itineraire.adresseDepart}}</td>
-        <td>{{annonce.itineraire.adresseDest}}</td>
-        <td>{{annonce.nbVoyageurs}}</td>
+        <td scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</td>
+        <td>{{annonce?.itineraire.adresseDepart}}</td>
+        <td>{{annonce?.itineraire.adresseDest}}</td>
+        <td>{{annonce?.nbVoyageurs}}</td>
+        <td>{{annonce?.statut}}</td>
         <td class="d-flex justify-content-center">
           <button type="button" mdbBtn color="primary" class="relative waves-light btn-sm" (click)="basicModal.show()"
             mdbWavesEffect>Annuler</button>
@@ -81,6 +83,7 @@
           <td>{{annonce?.itineraire.adresseDepart}}</td>
           <td>{{annonce?.itineraire.adresseDest}}</td>
           <td>{{annonce?.nbVoyageurs}}</td>
+          <td>{{annonce?.statut}}</td>
         </tr>
       </tbody>
     </table>
