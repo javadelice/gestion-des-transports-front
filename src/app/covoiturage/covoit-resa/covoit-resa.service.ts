@@ -35,8 +35,11 @@ export class CovoitResaService {
     return this._http.get<ResaCovoit[]>(`${environment.baseUrl}collaborateur/reservations_old`);
   }
 
-creerResaCovoit (annonce: AnnonceCovoitResa) {
-  return this._http.post<AnnonceCovoitResa>(`${environment.baseUrl}collaborateur/reservations/covoit/creer`, annonce);
-}
+  creerResaCovoit (annonce: AnnonceCovoitResa) {
+    return this._http.post<AnnonceCovoitResa>(`${environment.baseUrl}collaborateur/reservations/covoit/creer`, annonce);
+  }
 
+  annulerResaCovoit (resa: ResaCovoit){
+    return this._http.patch<ResaCovoit>(`${environment.baseUrl}collaborateur/reservations`, resa);
+  }
 }

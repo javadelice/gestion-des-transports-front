@@ -42,12 +42,20 @@ export class CovoitResaComponent implements OnInit  {
 
 
   openModal(modal) {
-    this.error = undefined;
+    //this.error = undefined;
     this.modalService.open(modal);
   }
 
-cancelBooking(resa: string){
+cancelBooking(resa: ResaCovoit){
+this.srv.annulerResaCovoit(resa).subscribe(
+  success => {
+    //en cas de succes,fermeture de la fenetre modale
+    this.modalService.dismissAll();
+  },
+  err => {
 
+  }
+)
 }
 
 
