@@ -21,12 +21,16 @@ export class VehiculeResaService {
     return this._http.get<ResaVehicule[]>(`${URL_BASE}collaborateur/reservations/vehicule`);
   }
 
+  public getListVehiculeForReservation(dateDepart: string, heureDepart: string, minuteDepart: string): Observable<Vehicule[]> {
+    return this._http.get<Vehicule[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer?dateDepart=${dateDepart}&heureDepart=${heureDepart}&minuteDepart=${minuteDepart}`);
+  }
+
   public getHistorique(): Observable<ResaVehicule[]> {
     return this._http.get<ResaVehicule[]>(`${URL_BASE}collaborateur/historique`);
   }
 
   public ajouterReservationVehicule(infoResa: InfoResa): Observable<InfoResa[]> {
-    return this._http.post<InfoResa[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, { body: infoResa });
+    return this._http.post<InfoResa[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, infoResa );
   }
 
   public indisponible(indisponible: boolean): Observable<Vehicule> {

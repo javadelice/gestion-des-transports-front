@@ -12,10 +12,10 @@ import { ResaVehicule } from '../models/ResaVehicule';
 })
 export class ResaVehiculeCreerComponent implements OnInit {
 
-  infosResa: InfoResa[] = Array();
+  vehicules: Vehicule[] = Array();
   infoResa = new InfoResa();
   erreur = false;
-  dpnb = false;
+  currentDate = new Date();
 
   constructor(private dataSrv: VehiculeResaService) {
   }
@@ -24,7 +24,19 @@ export class ResaVehiculeCreerComponent implements OnInit {
     return this.erreur = false;
   }
 
-  creerReservationVehicule() {
+  listerVehicules() {
+    if (this.infoResa.dateDepart !== undefined &&
+      this.infoResa.heureDepart !== undefined &&
+      this.infoResa.minuteDepart !== undefined) {
+      this.dataSrv.getListVehiculeForReservation(this.infoResa.dateDepart, this.infoResa.heureDepart, this.infoResa.minuteDepart)
+        .subscribe(vehicules => {
+          this.vehicules = vehicules;
+        });
+    }
+  }
+
+  creerReservationVehicule(vehicule: Vehicule) {
+    this.infoResa.vehiculeSociete = vehicule;
     this.dataSrv.ajouterReservationVehicule(this.infoResa)
       .subscribe(() => {
         this.erreur = false;
@@ -35,17 +47,8 @@ export class ResaVehiculeCreerComponent implements OnInit {
         });
   }
 
-  indisponible(indisponible: boolean) {
-    this.dpnb = false;
-  }
-
-  disponible(disponible: boolean) {
-    this.dpnb = true;
-  }
 
   ngOnInit() {
-    this.dataSrv.getReservationVehicule().subscribe(infosResa => {
-      this.infosResa = infosResa;
-    });
+
   }
 }
