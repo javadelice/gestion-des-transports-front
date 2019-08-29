@@ -26,6 +26,10 @@ export class AnnoncesComponent implements OnInit {
     .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
+  annulerAnnonce(annonce:AnnonceCovoitList){
+    return this.annonceService.suppressionAnnonce(annonce).subscribe(()=>{console.log("annonce annulée")});
+  }
+
   ngOnInit() {
     this.annonceService.afficherAnnoncesEnCours().subscribe(annoncesEnCours =>
       {this.annoncesEnCours = annoncesEnCours;});
