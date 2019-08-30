@@ -35,7 +35,7 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
 
 
   selection() {
-    if(this.lieuDepart !== undefined){
+    if(this.date !== undefined && this.lieuDepart !== undefined && this.lieuArrivee !== undefined){
       this.srv.getReservationsCovoit(this.date, this.lieuDepart, this.lieuArrivee)
     .subscribe(annonces => this.annonces = annonces);
     }
