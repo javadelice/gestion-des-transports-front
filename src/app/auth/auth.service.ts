@@ -13,6 +13,7 @@ import {catchError, map, tap} from 'rxjs/operators';
  * @type {Collegue}
  */
 const COLLEGUE_ANONYME = new Collegue({});
+const ROLE_UNDIFINED = '';
 
 /**
  * Service de gestion de l'authentification.
@@ -30,6 +31,7 @@ export class AuthService {
    * @type {BehaviorSubject<any>}
    */
   private collegueConnecteSub: BehaviorSubject<Collegue> = new BehaviorSubject(COLLEGUE_ANONYME);
+  private roleUserSub: BehaviorSubject<string>  = new BehaviorSubject(ROLE_UNDIFINED);
 
   constructor(private _http: HttpClient) {
   }
@@ -41,6 +43,19 @@ export class AuthService {
    */
   get collegueConnecteObs(): Observable<Collegue> {
     return this.collegueConnecteSub.asObservable();
+  }
+
+  /**
+   * Interface Observable du role de l'utilisateur connecté.
+   *
+   * @returns {Observable<string>}
+   */
+  get roleUserObs(): Observable<string> {
+    return this.roleUserSub.asObservable();
+  }
+
+  set roleUser(role) {
+    this.roleUserSub.next(role);
   }
 
   /**
@@ -103,7 +118,10 @@ export class AuthService {
 
     return this._http.post<Collegue>(`${environment.baseUrl}${environment.apiLogout}`, null , config)
       .pipe(
-        tap(col => this.collegueConnecteSub.next(COLLEGUE_ANONYME))
+        tap(col => {
+          this.collegueConnecteSub.next(COLLEGUE_ANONYME);
+          this.roleUserSub.next(ROLE_UNDIFINED);
+        })
       );
   }
 }

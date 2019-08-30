@@ -21,8 +21,10 @@ export class VehiculeResaService {
     return this._http.get<ResaVehicule[]>(`${URL_BASE}collaborateur/reservations/vehicule`);
   }
 
-  public getListVehiculeForReservation(dateDepart: string, heureDepart: string, minuteDepart: string): Observable<Vehicule[]> {
-    return this._http.get<Vehicule[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer?dateDepart=${dateDepart}&heureDepart=${heureDepart}&minuteDepart=${minuteDepart}`);
+  public getListVehiculeForReservation(dateDepart: string, heureDepart: string, minuteDepart: string,
+                                       dateRetour: string, heureRetour: string, minuteRetour: string): Observable<Vehicule[]> {
+    return this._http.get<Vehicule[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer?dateDepart=${dateDepart}&heureDepart=${heureDepart}&minuteDepart=${minuteDepart}&` +
+    `dateRetour=${dateRetour}&heureRetour=${heureRetour}&minuteRetour=${minuteRetour}`);
   }
 
   public getHistorique(): Observable<ResaVehicule[]> {
