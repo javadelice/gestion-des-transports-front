@@ -49,50 +49,31 @@
       </div>
 
       <div class="col-md-5">
-        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
-        <button type="button" class="btn btn-danger" (click)="openModal(content)">Ajouter un chauffeur</button>
+        <button type="button" mdbBtn color="primary" (click)="openModal(content)">Ajouter un chauffeur</button>
       </div>
     </div>
   </mdb-card-body>
 </mdb-card>
 
-<ng-template #template>
+<ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Nouveau chauffeur</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">×</span>
     </button>
+    <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un covoiturage</h4>
   </div>
   <div class="modal-body">
-    <div class="container">
-      <div class="row align-items-center mt-3">
-        <!--BARRE RECHERCHE MATRICULE-->
-        <div class="col-md-3">
-          <form>
-            <label class="ml-2">Matricule </label>
-          </form>
-        </div>
-
-        <div class="col-md-9">
-          <form>
-            <input type="search" class="form-control" id="searchName" #saisie placeholder="Recherche par matricule">
-          </form>
-        </div>
-      </div>
-      <div class="row align-items-center mt-3">
-          <div class="col">
-              <button (click)="modalRef.hide()" class=" btn btn-info">Annuler</button>
-            </div>
-          <div class="col">
-              <button type="submit" class="btn btn-info">Valider</button>
-          </div>
 
 
-      </div>
-
-    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modal.dismiss()"
+      mdbWavesEffect>Annuler</button>
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+       mdbWavesEffect >Réserver</button>
   </div>
 </ng-template>
+
 
 
 <div *ngIf="chauffeurs.length>0">

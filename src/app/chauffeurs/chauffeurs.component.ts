@@ -22,9 +22,7 @@ this.srv.getAllChauffeurs()
     this.modalService.open(modal);
   }
 
-  /*openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }*/
+
 
   getChauffeur(matricule:string){
     this.srv.rechercherParMatricule(matricule)

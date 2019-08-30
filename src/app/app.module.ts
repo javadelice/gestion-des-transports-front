@@ -35,7 +35,7 @@ const routes: Routes = [
   {path: 'annonces', component: AnnoncesComponent, canActivate: [StatutConnecteService]},
   {path: 'statistiques', component: StatistiquesComponent, canActivate: [StatutConnecteService]},
   { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
-  {path: 'admin/chauffeurs', component: ChauffeursComponent},
+  {path: 'chauffeurs', component: ChauffeursComponent},
 
   {path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
