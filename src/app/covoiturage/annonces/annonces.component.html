@@ -25,7 +25,6 @@
         <td>{{annonce?.itineraire.adresseDepart}}</td>
         <td>{{annonce?.itineraire.adresseDest}}</td>
         <td>{{annonce?.nbVoyageurs}}</td>
-        <td>{{annonce?.statut}}</td>
         <td class="d-flex justify-content-center">
           <button type="button" mdbBtn color="primary" class="relative waves-light btn-sm" (click)="basicModal.show()"
             mdbWavesEffect>Annuler</button>
@@ -48,8 +47,8 @@
                 <div class="modal-footer">
                   <button type="button" mdbBtn class="waves-light danger-color-dark text-white" aria-label="Close"
                     (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-                  <button type="submit" mdbBtn color="primary" class="relative waves-light" (click)="annulerAnnonce(annonce)"
-                    mdbWavesEffect>Confirmer</button>
+                  <button type="submit" mdbBtn color="primary" class="relative waves-light"
+                    (click)="annulerAnnonce(annonce)" mdbWavesEffect>Confirmer</button>
                 </div>
               </div>
             </div>
@@ -61,8 +60,8 @@
 </div>
 <ng-template #elseEnCours>
   <div class="alert alert-warning" role="alert">
-  Aucune annonce en cours
-</div>
+    Aucune annonce en cours
+  </div>
 </ng-template>
 
 
@@ -83,7 +82,6 @@
           <td>{{annonce?.itineraire.adresseDepart}}</td>
           <td>{{annonce?.itineraire.adresseDest}}</td>
           <td>{{annonce?.nbVoyageurs}}</td>
-          <td>{{annonce?.statut}}</td>
         </tr>
       </tbody>
     </table>
@@ -100,8 +98,8 @@
   </div>
   <ng-template #elseHistorique>
     <div class="alert alert-warning" role="alert">
-    Aucun historique
-  </div>
-</ng-template>
+      Aucun historique
+    </div>
+  </ng-template>
 
 </div>
