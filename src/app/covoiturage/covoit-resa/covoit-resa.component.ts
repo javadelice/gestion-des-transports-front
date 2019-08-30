@@ -51,6 +51,7 @@ this.srv.annulerResaCovoit(resa).subscribe(
   success => {
     //en cas de succes,fermeture de la fenetre modale
     this.modalService.dismissAll();
+    this.ngOnInit();
   },
   err => {
 

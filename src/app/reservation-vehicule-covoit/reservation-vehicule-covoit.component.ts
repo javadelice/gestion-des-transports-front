@@ -13,12 +13,18 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
 
   annonces: AnnonceCovoitResa[];
   error: string;
+  date : string;
+  lieuDepart: string;
+  lieuArrivee: string;
 
   headElements = ['Date / heure', 'Départ', 'Destination', 'Véhicule', 'Chauffeur', 'Places disponibles', ''];
 
   constructor(private srv: CovoitResaService,  private _router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.date = undefined;
+    this.lieuArrivee = undefined;
+    this.lieuDepart = undefined;
   }
 
   openModal(modal) {
@@ -28,9 +34,12 @@ export class ReservationVehiculeCovoitComponent implements OnInit {
 
 
 
-  selection(date: string, lieuDepart: string, lieuArrivee: string) {
-    this.srv.getReservationsCovoit(date, lieuDepart, lieuArrivee)
+  selection() {
+    if(this.date !== undefined && this.lieuDepart !== undefined && this.lieuArrivee !== undefined){
+      this.srv.getReservationsCovoit(this.date, this.lieuDepart, this.lieuArrivee)
     .subscribe(annonces => this.annonces = annonces);
+    }
+
   }
 
   confirmBooking(annonce: AnnonceCovoitResa) {
