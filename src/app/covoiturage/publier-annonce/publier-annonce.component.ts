@@ -18,7 +18,7 @@ export class PublierAnnonceComponent implements OnInit {
   errorValidation: boolean = false;
   backEndErrors:any = {};
   currentDate = new Date();
-
+  
   delete(){
     return this.errorValidation = false;
   }

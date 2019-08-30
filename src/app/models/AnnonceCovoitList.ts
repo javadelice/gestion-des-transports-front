@@ -9,13 +9,12 @@ export class AnnonceCovoitList{
     public itineraire: Itineraire,
     public vehicule: Vehicule,
     public dateTime: Date,
-    public nbVoyageurs: number) {
+    public nbVoyageurs: number,
+    public statut: string) {
     }
-
 }
 
 export class Conducteur {
   constructor(public nomComplet: string) {
-
   }
 }
