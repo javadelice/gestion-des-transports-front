@@ -11,6 +11,8 @@
       <div *ngIf="dateDepart.dirty && dateDepart.invalid " class="invalid-feedback">La date de réservation est
         obligatoire
       </div>
+      <div *ngIf="erreur && errors.dateDebut" class="invalid-feedback">{{errors?.dateDebut}}
+      </div>
     </div>
     <div class="col-md-2">
       <select class="custom-select mr-sm-2 mb-1 form-control" id="heureDepart" name="heureDepart"
@@ -62,14 +64,14 @@
       <label for="dateRetour" class="text-center mt-2">Date/heure de retour :</label>
     </div>
     <div class="col-md-4">
-      <input class="form-control mb-1" type="date" id="dateRetour" name="dateRetour" [(ngModel)]="infoResa.dateRetour"
-        #dateRetour="ngModel" min="{{infoResa.dateDepart | date: 'yyyy-MM-dd'}}" required />
+      <input (invalid)="erreur" class="form-control mb-1" type="date" id="dateRetour" name="dateRetour" [(ngModel)]="infoResa.dateRetour"
+        #dateRetour="ngModel" min="{{infoResa.dateDepart | date: 'yyyy-MM-dd'}}" (ngModelChange)="listerVehicules()" required />
       <div *ngIf="dateRetour.dirty && dateRetour.invalid " class="invalid-feedback">La date de retour est obligatoire
       </div>
     </div>
     <div class="col-md-2">
       <select class="custom-select mr-sm-2 mb-1 form-control" id="heureRetour" name="heureRetour"
-        [(ngModel)]="infoResa.heureRetour" #heureRetour="ngModel" required>
+        [(ngModel)]="infoResa.heureRetour" (ngModelChange)="listerVehicules()" #heureRetour="ngModel" required>
         <option value="00">00</option>
         <option value="01">01</option>
         <option value="02">02</option>
@@ -101,7 +103,7 @@
     </div>
     <div class="col-md-2">
       <select class="custom-select mr-sm-2 mb-1" id="minuteRetour" name="minuteRetour"
-        [(ngModel)]="infoResa.minuteRetour" #minuteRetour="ngModel" required>
+        [(ngModel)]="infoResa.minuteRetour" (ngModelChange)="listerVehicules()" #minuteRetour="ngModel" required>
         <option value="00">00</option>
         <option value="10">10</option>
         <option value="20">20</option>
@@ -129,18 +131,15 @@
         </div>
 
         <div class="mb-4 d-flex justify-content-center">
-          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()"
+          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="modalService.open(content)"
                   [disabled]="faireReservation.invalid " [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
         </div>
 
       </div>
     </mdb-carousel-item>
-      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
-           aria-labelledby="myBasicModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+      <ng-template #content let-modal>
             <div class="modal-header">
-              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
                 <span aria-hidden="true">×</span>
               </button>
               <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un véhicule</h4>
@@ -162,16 +161,22 @@
                 <dt class="col-4">Modèle</dt>
                 <dd class="col-8">{{vehicule.modele}}</dd>
               </dl>
+
+              <div *ngIf="erreur == true" class="alert alert-danger mt-2" role="alert">
+                <p>Impossible de créer l'annonce</p>
+                <ul>
+                  <li *ngIf="errors?.dateDebut">{{errors.dateDebut}}</li>
+                  <li *ngIf="errors?.dateRetour">{{errors.dateRetour}}</li>
+                </ul>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                      (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+                      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
               <button type="button" mdbBtn color="primary"
-                      class="relative waves-light" (click)="creerReservationVehicule(vehicule)" mdbWavesEffect>Confirmer</button>
+                      class="relative waves-light" (click)="creerReservationVehicule(vehicule)" (invalid)="errors" mdbWavesEffect>Confirmer</button>
             </div>
-          </div>
-        </div>
-      </div>
+      </ng-template>
     </div>
   </mdb-carousel>
 

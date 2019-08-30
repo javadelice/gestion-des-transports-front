@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { InfoResa } from '../models/infoResa';
-import { VehiculeResaService } from '../vehicule-resa/vehicule-resa-service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Vehicule } from '../models/Vehicule';
-import { ResaVehicule } from '../models/ResaVehicule';
+import {Component, OnInit} from '@angular/core';
+import {InfoResa} from '../models/infoResa';
+import {VehiculeResaService} from '../vehicule-resa/vehicule-resa-service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Vehicule} from '../models/Vehicule';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-resa-vehicule-creer',
@@ -16,8 +17,9 @@ export class ResaVehiculeCreerComponent implements OnInit {
   infoResa = new InfoResa();
   erreur = false;
   currentDate = new Date();
+  errors: any;
 
-  constructor(private dataSrv: VehiculeResaService) {
+  constructor(private dataSrv: VehiculeResaService, private modalService: NgbModal, private _router: Router ) {
   }
 
   delete() {
@@ -25,10 +27,26 @@ export class ResaVehiculeCreerComponent implements OnInit {
   }
 
   listerVehicules() {
-    if (this.infoResa.dateDepart !== undefined &&
+    if ((this.infoResa.dateDepart !== undefined &&
       this.infoResa.heureDepart !== undefined &&
-      this.infoResa.minuteDepart !== undefined) {
-      this.dataSrv.getListVehiculeForReservation(this.infoResa.dateDepart, this.infoResa.heureDepart, this.infoResa.minuteDepart)
+      this.infoResa.minuteDepart !== undefined)
+    && (this.infoResa.dateRetour === undefined &&
+      this.infoResa.heureRetour === undefined &&
+      this.infoResa.minuteRetour === undefined)) {
+      this.dataSrv.getListVehiculeForReservation(this.infoResa.dateDepart, this.infoResa.heureDepart, this.infoResa.minuteDepart,
+        this.infoResa.dateRetour, this.infoResa.heureRetour, this.infoResa.minuteRetour)
+        .subscribe(vehicules => {
+          this.vehicules = vehicules;
+        });
+    }
+    if ((this.infoResa.dateDepart !== undefined &&
+      this.infoResa.heureDepart !== undefined &&
+      this.infoResa.minuteDepart !== undefined)
+      && (this.infoResa.dateRetour !== undefined &&
+        this.infoResa.heureRetour !== undefined &&
+        this.infoResa.minuteRetour !== undefined)) {
+      this.dataSrv.getListVehiculeForReservation(this.infoResa.dateDepart, this.infoResa.heureDepart, this.infoResa.minuteDepart,
+        this.infoResa.dateRetour, this.infoResa.heureRetour, this.infoResa.minuteRetour)
         .subscribe(vehicules => {
           this.vehicules = vehicules;
         });
@@ -40,10 +58,12 @@ export class ResaVehiculeCreerComponent implements OnInit {
     this.dataSrv.ajouterReservationVehicule(this.infoResa)
       .subscribe(() => {
         this.erreur = false;
-        location.reload();
+        this.modalService.dismissAll();
+        this._router.navigate(['/reservations']);
       },
         (respError: HttpErrorResponse) => {
           this.erreur = true;
+          this.errors = respError.error;
         });
   }
 
