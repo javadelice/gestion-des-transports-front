@@ -29,6 +29,5 @@ export class AnnonceCovoitService {
 
   suppressionAnnonce(annonceCovoit: AnnonceCovoitList) {
     return this.httpClient.patch<AnnonceCovoitList>(environment.baseUrl + 'collaborateur/annonces_annulation', annonceCovoit, { withCredentials: true });
-
   }
 }
