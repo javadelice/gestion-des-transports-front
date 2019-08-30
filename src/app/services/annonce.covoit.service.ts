@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http'
-import { InfoCovoit } from "../models/InfoCovoit";
-import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
-import { AnnonceCovoitList } from "../models/AnnonceCovoitList";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { InfoCovoit } from '../models/InfoCovoit';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { AnnonceCovoitList } from '../models/AnnonceCovoitList';
 
 @Injectable({
   providedIn: 'root'

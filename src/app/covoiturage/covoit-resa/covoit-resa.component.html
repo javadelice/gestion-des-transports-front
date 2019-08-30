@@ -8,10 +8,10 @@
     </thead>
     <tbody>
     <tr mdbTableCol *ngFor="let resa of resas">
-      <th scope="row">{{resa?.annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
-      <td>{{resa.annonce.itineraire.adresseDepart}}</td>
-      <td>{{resa.annonce.itineraire.adresseDest}}</td>
-      <td>{{resa.statutResa}}</td>
+      <th scope="row">{{resa?.annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
+      <td>{{resa?.annonce?.itineraire.adresseDepart}}</td>
+      <td>{{resa?.annonce?.itineraire.adresseDest}}</td>
+      <td>{{resa?.statutResa}}</td>
       <td>
         <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
         <button type="button" class="btn btn-danger" (click)="openModal(content)">Annuler</button>
@@ -26,19 +26,19 @@
           <div class="modal-body">
             <dl class="row">
               <dt class="col-4">Départ</dt>
-              <dd class="col-8">{{resa?.annonce.itineraire.adresseDepart }}</dd>
+              <dd class="col-8">{{resa?.annonce?.itineraire.adresseDepart }}</dd>
 
               <dt class="col-4">Destination</dt>
-              <dd class="col-8">{{resa?.annonce.itineraire.adresseDest}}</dd>
+              <dd class="col-8">{{resa?.annonce?.itineraire.adresseDest}}</dd>
 
               <dt class="col-4">Date/heure</dt>
-              <dd class="col-8">{{resa?.annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</dd>
+              <dd class="col-8">{{resa?.annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</dd>
 
               <dt class="col-4">Véhicule</dt>
-              <dd class="col-8">{{resa?.annonce.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
+              <dd class="col-8">{{resa?.annonce?.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
 
               <dt class="col-4">Chauffeur</dt>
-              <dd class="col-8">{{resa?.annonce.collegue.nomComplet}}</dd>
+              <dd class="col-8">{{resa?.annonce?.collegue.nomComplet}}</dd>
 
               <div class="alert alert-danger" role="alert">
                 Affichage message d'erreur
@@ -63,19 +63,19 @@
               <div class="modal-body">
                 <dl class="row">
                   <dt class="col-4">Départ</dt>
-                  <dd class="col-8">{{resa?.annonce.itineraire.adresseDepart }}</dd>
+                  <dd class="col-8">{{resa?.annonce?.itineraire.adresseDepart }}</dd>
 
                   <dt class="col-4">Destination</dt>
-                  <dd class="col-8">{{resa?.annonce.itineraire.adresseDest}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.itineraire.adresseDest}}</dd>
 
                   <dt class="col-4">Date/heure</dt>
-                  <dd class="col-8">{{resa?.annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</dd>
 
                   <dt class="col-4">Véhicule</dt>
-                  <dd class="col-8">{{resa?.annonce.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
 
                   <dt class="col-4">Chauffeur</dt>
-                  <dd class="col-8">{{resa?.annonce.collegue.nomComplet}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.collegue.nomComplet}}</dd>
                 </dl>
               </div>
               <div class="modal-footer">
@@ -100,7 +100,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let resa of resasHisto">
-      <th scope="row">{{resa?.annonce.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
+      <th scope="row">{{resa?.annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</th>
       <td>{{resa?.annonce.itineraire.adresseDepart}}</td>
       <td>{{resa?.annonce.itineraire.adresseDest}}</td>
       <td>{{resa?.statutResa}}</td>
@@ -119,19 +119,19 @@
               <div class="modal-body">
                 <dl class="row">
                   <dt class="col-4">Départ</dt>
-                  <dd class="col-8">{{resa?.annonce.itineraire.adresseDepart }}</dd>
+                  <dd class="col-8">{{resa?.annonce?.itineraire.adresseDepart }}</dd>
 
                   <dt class="col-4">Destination</dt>
-                  <dd class="col-8">{{resa?.annonce.itineraire.adresseDest}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.itineraire.adresseDest}}</dd>
 
                   <dt class="col-4">Date/heure</dt>
-                  <dd class="col-8">{{resa?.annonce.dateTime | date:'dd/MM/yyyy HH:mm'}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.dateTime | date:'dd/MM/yyyy HH:mm'}}</dd>
 
                   <dt class="col-4">Véhicule</dt>
-                  <dd class="col-8">{{resa?.annonce.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.vehicule.marque+" "+resa?.annonce.vehicule.modele}}</dd>
 
                   <dt class="col-4">Chauffeur</dt>
-                  <dd class="col-8">{{resa?.annonce.collegue.nomComplet}}</dd>
+                  <dd class="col-8">{{resa?.annonce?.collegue.nomComplet}}</dd>
                 </dl>
               </div>
               <div class="modal-footer">

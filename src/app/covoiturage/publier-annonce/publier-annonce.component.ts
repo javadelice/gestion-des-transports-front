@@ -14,12 +14,12 @@ export class PublierAnnonceComponent implements OnInit {
   constructor(private _ajoutAnnonce: AnnonceCovoitService, private router: Router) { }
 
 
-  infoCovoit = new InfoCovoit("", "", "", "", "", "", "", "", "");
-  errorValidation: boolean = false;
-  backEndErrors:any = {};
+  infoCovoit = new InfoCovoit('', '', '', '', '', '', '', '', '');
+  errorValidation = false;
+  backEndErrors: any = {};
   currentDate = new Date();
-  
-  delete(){
+
+  delete() {
     return this.errorValidation = false;
   }
 

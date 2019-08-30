@@ -1,8 +1,8 @@
-import { Itineraire } from "./Itineraire";
-import { Vehicule } from "./Vehicule";
+import { Itineraire } from './Itineraire';
+import { Vehicule } from './Vehicule';
 
 
-export class AnnonceCovoitList{
+export class AnnonceCovoitList {
 
   constructor (public id: number,
     public collegue: Conducteur,

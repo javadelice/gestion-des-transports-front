@@ -24,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
+import {ResaVehiculeCreerComponent} from './resa-vehicule-creer/resa-vehicule-creer.component';
 import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
 
 const routes: Routes = [
@@ -51,6 +52,8 @@ const routes: Routes = [
     StatistiquesComponent,
     AnnoncesComponent,
     ChauffeursComponent,
+    VehiculeResaComponent,
+    ResaVehiculeCreerComponent,
     ReservationVehiculeCovoitComponent,
     VehiculeResaComponent,
     PublierAnnonceComponent
@@ -61,6 +64,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,
     NgbModule,
     FormsModule
   ],

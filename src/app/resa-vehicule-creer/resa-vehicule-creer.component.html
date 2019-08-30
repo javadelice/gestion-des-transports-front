@@ -1,0 +1,183 @@
+<form #faireReservation="ngForm" class="was-validated">
+
+  <!--CHAMPS DATE ET HEURE-->
+  <div class="row align-items-center mt-3 mb-3">
+    <div class="col-md-3">
+      <label for="dateDepart" class="text-center mt-2">Date/heure de réservation :</label>
+    </div>
+    <div class="col-md-4">
+      <input class="form-control mb-1" type="date" id="dateDepart" name="dateDebut" [(ngModel)]="infoResa.dateDepart"
+        #dateDepart="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required (ngModelChange)="listerVehicules()"/>
+      <div *ngIf="dateDepart.dirty && dateDepart.invalid " class="invalid-feedback">La date de réservation est
+        obligatoire
+      </div>
+      <div *ngIf="erreur && errors.dateDebut" class="invalid-feedback">{{errors?.dateDebut}}
+      </div>
+    </div>
+    <div class="col-md-2">
+      <select class="custom-select mr-sm-2 mb-1 form-control" id="heureDepart" name="heureDepart"
+        [(ngModel)]="infoResa.heureDepart" #heureDepart="ngModel" (ngModelChange)="listerVehicules()" required>
+        <option value="00">00</option>
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+      </select>
+    </div>
+    <div class="text-center mt-2">
+      <p>h</p>
+    </div>
+    <div class="col-md-2">
+      <select class="custom-select mr-sm-2 mb-1" id="minuteDepart" name="minuteDepart"
+        [(ngModel)]="infoResa.minuteDepart"  #minuteDepart="ngModel" (ngModelChange)="listerVehicules()" required>
+        <option value="00">00</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row align-items-center mt-3 mb-3">
+    <div class="col-md-3">
+      <label for="dateRetour" class="text-center mt-2">Date/heure de retour :</label>
+    </div>
+    <div class="col-md-4">
+      <input (invalid)="erreur" class="form-control mb-1" type="date" id="dateRetour" name="dateRetour" [(ngModel)]="infoResa.dateRetour"
+        #dateRetour="ngModel" min="{{infoResa.dateDepart | date: 'yyyy-MM-dd'}}" (ngModelChange)="listerVehicules()" required />
+      <div *ngIf="dateRetour.dirty && dateRetour.invalid " class="invalid-feedback">La date de retour est obligatoire
+      </div>
+    </div>
+    <div class="col-md-2">
+      <select class="custom-select mr-sm-2 mb-1 form-control" id="heureRetour" name="heureRetour"
+        [(ngModel)]="infoResa.heureRetour" (ngModelChange)="listerVehicules()" #heureRetour="ngModel" required>
+        <option value="00">00</option>
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+      </select>
+    </div>
+    <div class="text-center mt-2">
+      <p>h</p>
+    </div>
+    <div class="col-md-2">
+      <select class="custom-select mr-sm-2 mb-1" id="minuteRetour" name="minuteRetour"
+        [(ngModel)]="infoResa.minuteRetour" (ngModelChange)="listerVehicules()" #minuteRetour="ngModel" required>
+        <option value="00">00</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+  </div>
+
+
+  <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+    <div *ngFor="let vehicule of vehicules">
+    <mdb-carousel-item >
+      <div class="view w-100">
+        <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
+        <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+      </div>
+      <div class="carousel-caption">
+        <div class="text-center">
+          <h5>{{vehicule.immatriculation}} <br>
+            {{vehicule.marque}} - {{vehicule.modele}} <br>
+            {{vehicule.categorie}} <br>
+            <p class="text-danger" *ngIf="vehicule.indisponible === 'Indisponible'">{{vehicule.indisponible}}</p></h5>
+        </div>
+
+        <div class="mb-4 d-flex justify-content-center">
+          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="modalService.open(content)"
+                  [disabled]="faireReservation.invalid " [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
+        </div>
+
+      </div>
+    </mdb-carousel-item>
+      <ng-template #content let-modal>
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un véhicule</h4>
+            </div>
+            <div class="modal-body">
+              <dl class="row">
+                <dt class="col-4">Date/heure de réservation</dt>
+                <dd class="col-8">{{dateDepart.value}}/ {{heureDepart.value}}h{{minuteDepart.value}}</dd>
+
+                <dt class="col-4">Date/heure retour</dt>
+                <dd class="col-8">{{dateRetour.value}}/ {{heureRetour.value}}h{{minuteRetour.value}}</dd>
+
+                <dt class="col-4">Immatriculation</dt>
+                <dd class="col-8">{{vehicule.immatriculation}}</dd>
+
+                <dt class="col-4">Marque</dt>
+                <dd class="col-8">{{vehicule.marque}}</dd>
+
+                <dt class="col-4">Modèle</dt>
+                <dd class="col-8">{{vehicule.modele}}</dd>
+              </dl>
+
+              <div *ngIf="erreur == true" class="alert alert-danger mt-2" role="alert">
+                <p>Impossible de créer l'annonce</p>
+                <ul>
+                  <li *ngIf="errors?.dateDebut">{{errors.dateDebut}}</li>
+                  <li *ngIf="errors?.dateRetour">{{errors.dateRetour}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary"
+                      class="relative waves-light" (click)="creerReservationVehicule(vehicule)" (invalid)="errors" mdbWavesEffect>Confirmer</button>
+            </div>
+      </ng-template>
+    </div>
+  </mdb-carousel>
+
+</form>

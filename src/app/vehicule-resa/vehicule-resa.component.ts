@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiculeResaService } from './vehicule-resa-service';
-import { ResaVehicule } from '../model/ResaVehicule';
+import { ResaVehicule } from '../models/ResaVehicule';
 
 @Component({
   selector: 'app-vehicule-resa',
