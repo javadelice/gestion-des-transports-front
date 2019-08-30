@@ -1,9 +1,22 @@
-<h1>Réserver un véhicule</h1>
+<div class="my-3">
+  <a class="p-2" routerLink="/reservations"> ❮❮ Retour à la liste des annonces </a>
+</div>
+<div class="my-3">
+  <h1> Réserver un véhicule</h1>
+</div>
 
-<button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
+
+<button mdbBtn color="primary" class="waves-light" class="btn-lg btn-block" type="button" (click)="test.toggle()" mdbWavesEffect>
   Covoiturage
 </button>
 
 <div class="" mdbCollapse #test="bs-collapse">
-  <app-covoit-resa></app-covoit-resa>
+  <app-reservation-vehicule-covoit></app-reservation-vehicule-covoit>
+</div>
+<button mdbBtn color="primary" class="waves-light" type="button" (click)="test2.toggle()" mdbWavesEffect>
+  Véhicules de société
+</button>
+
+<div class="" mdbCollapse #test2="bs-collapse">
+  <app-resa-vehicule-creer></app-resa-vehicule-creer>
 </div>
