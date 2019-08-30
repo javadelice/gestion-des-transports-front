@@ -1,6 +1,10 @@
 export class Itineraire {
 
-  constructor(public id: number, public adresseDepart: string, public adresseDest: string, public duree: string, distance: number) {
+  constructor(public id: number,
+    public adresseDepart: string,
+    public adresseDest: string,
+    public duree: string,
+    public distance: number) {
 
   }
 }
