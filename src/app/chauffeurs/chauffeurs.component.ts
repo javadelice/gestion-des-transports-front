@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ChauffeursService } from '../services/chauffeurs.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-chauffeurs',
@@ -10,11 +11,15 @@ export class ChauffeursComponent implements OnInit {
 
   chauffeurs = [];
 
-  constructor(private srv: ChauffeursService) { }
+  constructor(private srv: ChauffeursService, private modalService: NgbModal) { }
 
   ngOnInit() {
 this.srv.getAllChauffeurs()
 .subscribe(chauffeurs => this.chauffeurs = chauffeurs);
+  }
+
+  openModal(modal){
+    this.modalService.open(modal);
   }
 
   /*openModal(template: TemplateRef<any>) {
