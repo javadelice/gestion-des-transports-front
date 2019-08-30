@@ -8,7 +8,8 @@ export class AnnonceCovoitResa {
   public itineraire: Itineraire,
   public vehicule: Vehicule,
   public dateTime: Date,
-  public nbPlacesLibres: number) {
+  public nbPlacesLibres: number,
+  public statut: string) {
 
   }
 }

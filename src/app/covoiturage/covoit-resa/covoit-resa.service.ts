@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {AnnonceCovoitResa} from '../../models/AnnonceCovoitResa';
 import {environment} from '../../../environments/environment';
+import { ResaCovoit } from 'src/app/models/ResaCovoit';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class CovoitResaService {
     return this.subAnnoncesSelectionnees.asObservable();
   }
 
-  getReservations(): Observable<AnnonceCovoitResa[]> {
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations`);
+  getReservations(): Observable<ResaCovoit[]> {
+    return this._http.get<ResaCovoit[]>(`${environment.baseUrl}collaborateur/reservations`);
   }
 
   getReservationsCovoit(date: string, lieuDepart: string, lieuArrivee: string): Observable<AnnonceCovoitResa[]> {
@@ -30,12 +31,15 @@ export class CovoitResaService {
     return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?date=${date}&lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
   }
 
-  getOldReservations(): Observable<AnnonceCovoitResa[]> {
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations_old`);
+  getOldReservations(): Observable<ResaCovoit[]> {
+    return this._http.get<ResaCovoit[]>(`${environment.baseUrl}collaborateur/reservations_old`);
   }
 
-creerResaCovoit (annonce: AnnonceCovoitResa) {
-  return this._http.post<AnnonceCovoitResa>(`${environment.baseUrl}collaborateur/reservations/covoit/creer`, annonce);
-}
+  creerResaCovoit (annonce: AnnonceCovoitResa) {
+    return this._http.post<AnnonceCovoitResa>(`${environment.baseUrl}collaborateur/reservations/covoit/creer`, annonce);
+  }
 
+  annulerResaCovoit (resa: ResaCovoit){
+    return this._http.patch<ResaCovoit>(`${environment.baseUrl}collaborateur/reservations`, resa);
+  }
 }
