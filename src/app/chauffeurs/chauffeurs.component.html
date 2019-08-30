@@ -49,7 +49,8 @@
       </div>
 
       <div class="col-md-5">
-        <button type="submit" class="btn btn-info" (click)="openModal(template)">Ajouter un chauffeur</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>details</button>
+        <button type="button" class="btn btn-danger" (click)="openModal(content)">Ajouter un chauffeur</button>
       </div>
     </div>
   </mdb-card-body>
