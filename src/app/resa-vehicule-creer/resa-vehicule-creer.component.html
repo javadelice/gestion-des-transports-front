@@ -1,5 +1,7 @@
 <form #faireReservation="ngForm" class="was-validated">
-
+  <div class="text-right">
+    <mdb-checkbox [checked]="false" [default]="true">Avec Chauffeur</mdb-checkbox>
+  </div>
   <!--CHAMPS DATE ET HEURE-->
   <div class="row align-items-center mt-3 mb-3">
     <div class="col-md-3">
@@ -7,7 +9,7 @@
     </div>
     <div class="col-md-4">
       <input class="form-control mb-1" type="date" id="dateDepart" name="dateDebut" [(ngModel)]="infoResa.dateDepart"
-        #dateDepart="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required (ngModelChange)="listerVehicules()"/>
+        #dateDepart="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required (ngModelChange)="listerVehicules()" />
       <div *ngIf="dateDepart.dirty && dateDepart.invalid " class="invalid-feedback">La date de réservation est
         obligatoire
       </div>
@@ -46,7 +48,7 @@
     </div>
     <div class="col-md-2">
       <select class="custom-select mr-sm-2 mb-1" id="minuteDepart" name="minuteDepart"
-        [(ngModel)]="infoResa.minuteDepart"  #minuteDepart="ngModel" (ngModelChange)="listerVehicules()" required>
+        [(ngModel)]="infoResa.minuteDepart" #minuteDepart="ngModel" (ngModelChange)="listerVehicules()" required>
         <option value="00">00</option>
         <option value="10">10</option>
         <option value="20">20</option>
@@ -115,28 +117,30 @@
 
   <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
     <div *ngFor="let vehicule of vehicules">
-    <mdb-carousel-item >
-      <div class="view w-100">
-        <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
-        <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
-      </div>
-      <div class="carousel-caption">
-        <div class="text-center">
-          <h5>{{vehicule.immatriculation}} <br>
-            {{vehicule.marque}} - {{vehicule.modele}} <br>
-            {{vehicule.categorie}} <br>
-            <p class="text-danger" *ngIf="vehicule.indisponible === 'Indisponible'">{{vehicule.indisponible}}</p></h5>
+      <mdb-carousel-item>
+        <div class="view w-100">
+          <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
+          <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
         </div>
+        <div class="carousel-caption">
+          <div class="text-center">
+            <h5>{{vehicule.immatriculation}} <br>
+              {{vehicule.marque}} - {{vehicule.modele}} <br>
+              {{vehicule.categorie}} <br>
+              <p class="text-danger" *ngIf="vehicule.indisponible === 'Indisponible'">{{vehicule.indisponible}}</p>
+            </h5>
+          </div>
 
-        <div class="mb-4 d-flex justify-content-center">
-          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()"
-                  [disabled]="faireReservation.invalid " [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
+          <div class="mb-4 d-flex justify-content-center">
+            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()"
+              [disabled]="faireReservation.invalid "
+              [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
+          </div>
+
         </div>
-
-      </div>
-    </mdb-carousel-item>
+      </mdb-carousel-item>
       <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
-           aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -165,9 +169,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                      (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-              <button type="button" mdbBtn color="primary"
-                      class="relative waves-light" (click)="creerReservationVehicule(vehicule)" mdbWavesEffect>Confirmer</button>
+                (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light"
+                (click)="creerReservationVehicule(vehicule)" mdbWavesEffect>Confirmer</button>
             </div>
           </div>
         </div>
