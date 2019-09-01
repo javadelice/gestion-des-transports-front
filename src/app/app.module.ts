@@ -26,6 +26,7 @@ import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
 import {ResaVehiculeCreerComponent} from './resa-vehicule-creer/resa-vehicule-creer.component';
 import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
+import { GestionVehiculesComponent } from './admin/gestion-vehicules/gestion-vehicules.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'annonces', component: AnnoncesComponent, canActivate: [StatutConnecteService]},
   {path: 'statistiques', component: StatistiquesComponent, canActivate: [StatutConnecteService]},
   { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
+  { path: 'vehicules', component: GestionVehiculesComponent, canActivate: [StatutConnecteService]},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -56,7 +58,8 @@ const routes: Routes = [
     ResaVehiculeCreerComponent,
     ReservationVehiculeCovoitComponent,
     VehiculeResaComponent,
-    PublierAnnonceComponent
+    PublierAnnonceComponent,
+    GestionVehiculesComponent
   ],
   imports: [
     BrowserModule,
