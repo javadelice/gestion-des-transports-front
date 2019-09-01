@@ -6,80 +6,49 @@
   </mdb-card-header>
 
   <mdb-card-body class="px-lg-5 pt-0">
-    <div class="row align-items-center mt-3">
-      <!--BARRE RECHERCHE MATRICULE-->
-      <div class="col-md-3">
-        <form>
+    <form>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE MATRICULE-->
+        <div class="col-md-3">
           <label class="ml-2">Matricule </label>
-        </form>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" [(ngModel)]="matricule" 
+            name="maricule" placeholder="Recherche par matricule">
+        </div>
       </div>
-
-      <div class="col-md-4">
-        <form>
-          <input type="search" class="form-control" id="searchName" #saisie placeholder="Recherche par matricule">
-        </form>
-      </div>
-    </div>
-    <div class="row align-items-center mt-3">
-      <!--BARRE RECHERCHE NOM-->
-      <div class="col-md-3">
-        <form>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE NOM-->
+        <div class="col-md-3">
           <label class="ml-2">Nom</label>
-        </form>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" name="searchLastname" (ngModelChange)="searchChauffeur()"
+            [(ngModel)]="nom" placeholder="Recherche par nom">
+        </div>
       </div>
-
-      <div class="col-md-4">
-        <form>
-          <input type="search" class="form-control" id="searchName" #saisie placeholder="Recherche par nom">
-        </form>
-      </div>
-    </div>
-    <div class="row align-items-center mt-3">
-      <!--BARRE RECHERCHE PRENOM-->
-      <div class="col-md-3">
-        <form>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE PRENOM-->
+        <div class="col-md-3">
           <label class="ml-2">Prenom</label>
-        </form>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" name="searchFirstname" (ngModelChange)="searchChauffeur()"
+            [(ngModel)]="prenom" placeholder="Recherche par prénom">
+        </div>
+        <div class="col-md-5">
+          <button type="button" mdbBtn color="primary" (click)="openModal(content)">Ajouter un chauffeur</button>
+        </div>
       </div>
-
-      <div class="col-md-4">
-        <form>
-          <input type="search" class="form-control" id="searchName" #saisie placeholder="Recherche par prénom">
-        </form>
-      </div>
-
-      <div class="col-md-5">
-        <button type="button" mdbBtn color="primary" (click)="openModal(content)">Ajouter un chauffeur</button>
-      </div>
-    </div>
+    </form>
   </mdb-card-body>
 </mdb-card>
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
-      <span aria-hidden="true">×</span>
-    </button>
-    <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un covoiturage</h4>
-  </div>
-  <div class="modal-body">
 
-
-  </div>
-  <div class="modal-footer">
-    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modal.dismiss()"
-      mdbWavesEffect>Annuler</button>
-    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-       mdbWavesEffect >Réserver</button>
-  </div>
-</ng-template>
-
-
-
-<div *ngIf="chauffeurs.length>0">
-  <div class="card my-3" style="max-width: 540px;" *ngFor="let chauffeur of chauffeurs">
+<div *ngIf="collegues.length>0">
+  <div class="card my-3" style="max-width: 540px;" *ngFor="let collegue of colleguesFiltered">
     <div class="card-header">
-      <h4 class="my-0 font-weight-normal">{{chauffeur.nom}} {{chauffeur.prenom}}</h4>
+      <h4 class="my-0 font-weight-normal">{{collegue.nom}} {{collegue.prenom}}</h4>
     </div>
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -90,15 +59,18 @@
           <div class="card-text">
             <dl class="row">
               <dt class="col-sm-5">Matricule:</dt>
-              <dd class="col-sm-7">{{chauffeur.matricule}}</dd>
+              <dd class="col-sm-7">{{collegue.id}}</dd>
               <dt class="col-sm-5">Nom: </dt>
-              <dd class="col-sm-7">{{chauffeur.nom}}</dd>
+              <dd class="col-sm-7">{{collegue.nom}}</dd>
               <dt class="col-sm-5">Prenom:</dt>
-              <dd class="col-sm-7">{{chauffeur.prenom}}</dd>
-              <dt class="col-sm-5">Role:</dt>
-              <dd class="col-sm-7">{{chauffeur.roles}}</dd>
+              <dd class="col-sm-7">{{collegue.prenom}}</dd>
+              <dt class="col-sm-5">Permis:</dt>
+              <dd class="col-sm-7">{{collegue.permis}}</dd>
               <dt class="col-sm-5">Email:</dt>
-              <dd class="col-sm-7">{{chauffeur.email}}</dd>
+              <dd class="col-sm-7">{{collegue.email}}</dd>
+              <dt class="col-sm-5">Téléphone:</dt>
+              <dd class="col-sm-7">{{collegue.telephone}}</dd>
+
 
             </dl>
           </div>
@@ -109,5 +81,35 @@
   </div>
 </div>
 
+<!--FENETRE MODALE: AJOUT CHAUFFEUR-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title w-100" id="myModalLabel">Nouveau chauffeur</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row align-items-center mt-3">
+      <!--BARRE RECHERCHE MATRICULE-->
+      <div class="col-md-3">
+
+        <label class="ml-2">Matricule </label>
+
+      </div>
+
+      <div class="col-md-9">
+        <form>
+          <input type="search" class="form-control" [(ngModel)]="idCollegue" name="searchName"
+            placeholder="Recherche par matricule">
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modal.dismiss()"
+      mdbWavesEffect>Annuler</button>
+    <button type="button" name="id" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+      (click)="changeRoleChauffeur()" mdbWavesEffect>Ajouter</button>
+  </div>
+</ng-template>
 
 <router-outlet></router-outlet>

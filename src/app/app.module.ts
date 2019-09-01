@@ -25,7 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
 import {ResaVehiculeCreerComponent} from './resa-vehicule-creer/resa-vehicule-creer.component';
-import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
+import {ReservationCovoitComponent} from './covoiturage/reservation-covoit/reservation-covoit.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -56,7 +56,7 @@ const routes: Routes = [
     ChauffeursComponent,
     VehiculeResaComponent,
     ResaVehiculeCreerComponent,
-    ReservationVehiculeCovoitComponent,
+    ReservationCovoitComponent,
     VehiculeResaComponent,
     PublierAnnonceComponent
   ],

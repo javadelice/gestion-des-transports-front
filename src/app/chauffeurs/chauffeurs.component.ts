@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ChauffeursService } from '../services/chauffeurs.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Collegue } from '../models/Collegue';
 
 @Component({
   selector: 'app-chauffeurs',
@@ -9,24 +10,62 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ChauffeursComponent implements OnInit {
 
-  chauffeurs = [];
+  collegues: Collegue[];
+  colleguesFiltered: Collegue[];
+  idCollegue: number;
+  matricule: string = "";
+  nom: string = "";
+  prenom: string = "";
+  
 
   constructor(private srv: ChauffeursService, private modalService: NgbModal) { }
 
   ngOnInit() {
-this.srv.getAllChauffeurs()
-.subscribe(chauffeurs => this.chauffeurs = chauffeurs);
+    this.srv.getAllChauffeurs()
+      .subscribe(chauffeurs => {
+        this.collegues = chauffeurs;
+        this.colleguesFiltered = chauffeurs;
+      });
   }
 
-  openModal(modal){
+  openModal(modal) {
     this.modalService.open(modal);
   }
 
+  searchChauffeur() {
+this.colleguesFiltered = this.collegues
+/*.filter(
+  collegue => {
+    if (this.matricule !== ""){
+      return collegue.id == this.matricule;
+    } else {
+      return true;
+    }})*/
+.filter(
+collegue => {
+  if (this.nom !== ""){
+    return collegue.nom.toLowerCase().includes(this.nom.toLowerCase());
+  } else {
+    return true;
+  }})
+  .filter(
+  collegue => {
+    if (this.prenom !== ""){
+      return collegue.prenom.toLowerCase().includes(this.prenom.toLowerCase());
+    } else {
+      return true;
+    }
+  })}
 
-
-  getChauffeur(matricule:string){
-    this.srv.rechercherParMatricule(matricule)
-    .subscribe(chauffeur => this.srv.publier(chauffeur));
+  changeRoleChauffeur() {
+    console.log(this.idCollegue);
+    this.srv.donnerRoleChauffeur(this.idCollegue)
+      .subscribe(success => {
+        // en cas de succes,fermeture de la fenetre modale
+        this.modalService.dismissAll();
+        this.ngOnInit();
+      },
+        err => { })
   }
 
 }
