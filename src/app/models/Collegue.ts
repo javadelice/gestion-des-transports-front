@@ -1,8 +1,8 @@
 export class Collegue {
 
   constructor(
-    public nom?: string,
-    public prenom?: string
+    public nomComplet?: string,
+    public email?: string
   ) {
   }
 }
