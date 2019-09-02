@@ -12,7 +12,7 @@
         <label for="adresse_depart" class="ml-2">Adresse de départ </label>
         <!--BARRE RECHERCHE DÉPART-->
         <input #saisieDep type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
-          placeholder="Gare de Nantes" [(ngModel)]="lieuDepart" (ngModelChange)="selection()" required>
+          placeholder="Gare de Nantes" [(ngModel)]="lieuDepart" (blur)="selectionLieu()" required>
       </div>
 
       <div class="form-group col-md-4">
@@ -20,7 +20,7 @@
         <label for="adresse_destination" class="ml-2">Adresse de destination </label>
         <!--BARRE RECHERCHE DESTINATION-->
         <input #saisieDest type="text" class="form-control" id="adresse_destination" name="lieuDestination"
-          placeholder="Gare de Lyon" [(ngModel)]="lieuArrivee" (ngModelChange)="selection()" required>
+          placeholder="Gare de Lyon" [(ngModel)]="lieuArrivee" (blur)="selectionLieu()" required>
       </div>
 
       <div class="form-group col-md-4">
@@ -35,7 +35,7 @@
     <div class="row align-items-center mt-3">
       <div class="form-group col-md-4">
         <label for="dateDebut" class="ml-2">Date de départ</label>
-        <input #saisie class="form-control mb-1" type="date" [(ngModel)]="date" (ngModelChange)="selection()"
+        <input #saisie class="form-control mb-1" type="date" [(ngModel)]="date" (blur)="selectionLieu()"
           id="dateDebut" name="dateDebut" min="2019-03-30" data-error="" required />
 
       </div>

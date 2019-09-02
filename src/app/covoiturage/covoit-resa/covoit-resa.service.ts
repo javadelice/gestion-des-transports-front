@@ -27,8 +27,15 @@ export class CovoitResaService {
   }
 
   getReservationsCovoit(date: string, lieuDepart: string, lieuArrivee: string): Observable<AnnonceCovoitResa[]> {
-    // tslint:disable-next-line: max-line-length
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?date=${date}&lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee === undefined || lieuArrivee === '') && (date === undefined || date === '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}`);
+    }
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee !== undefined || lieuArrivee !== '') && (date === undefined || date === '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
+    }
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee !== undefined || lieuArrivee !== '') && (date !== undefined || date !== '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}&date=${date}`);
+    }
   }
 
   getOldReservations(): Observable<ResaCovoit[]> {

@@ -32,15 +32,11 @@ export class ReservationCovoitComponent implements OnInit {
     this.modalService.open(modal);
   }
 
-
-
-  selection() {
-    if (this.date !== undefined && this.lieuDepart !== undefined && this.lieuArrivee !== undefined) {
+  selectionLieu() {
       this.srv.getReservationsCovoit(this.date, this.lieuDepart, this.lieuArrivee)
-    .subscribe(annonces => this.annonces = annonces);
-    }
-
+        .subscribe(annonces => this.annonces = annonces);
   }
+
 
   confirmBooking(annonce: AnnonceCovoitResa) {
     this.srv.creerResaCovoit(annonce).subscribe(
