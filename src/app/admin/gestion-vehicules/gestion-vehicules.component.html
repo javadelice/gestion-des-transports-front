@@ -26,7 +26,7 @@
 
 <div class="container-fluid">
   <div class="card-columns">
-    <div class="card" *ngFor="let vehicule of vehiculesFiltered">
+    <div class="card p-3" *ngFor="let vehicule of vehiculesFiltered">
       <img src="{{vehicule.photoUrl}}" class="card-img-top" alt="">
       <div class="card-body">
         <h3 class="text-center">{{vehicule.immatriculation}}</h3>
@@ -36,7 +36,7 @@
     </div>
   </div>
   <ng-template #content let-modal>
-    <form (ngSubmit)="ajouterVehicule()" #ajoutVehicule="ngForm" class="was-validated">
+    <form (ngSubmit)="ajouterVehicule()" #ajoutVehicule="ngForm" >
     <div class="modal-header">
       <h4 class="modal-title w-100" id="myModalLabel">Véhicule</h4>
     </div>
@@ -46,41 +46,71 @@
         <dt class="col-4">Immatriculation</dt>
         <dd class="col-8"><input type="text" class="form-control" name="immatriculation"
                                  [(ngModel)]="this.vehiculeAdd.immatriculation"
-                                 #immatriculation="ngModel" required></dd>
+                                 #immatriculation="ngModel"
+                                  [class.is-invalid]="(immatriculation.dirty && immatriculation.invalid)
+                                  ||backEndErrors?.immatriculation"
+                                 [ngModelOptions]="{updateOn: 'blur'}" required></dd>
 
         <dt class="col-4">Marque</dt>
         <dd class="col-8"><input type="text" class="form-control" name="marque"
                                  [(ngModel)]="this.vehiculeAdd.marque"
-                                 #marque="ngModel" required></dd>
+                                 #marque="ngModel"
+                                 [class.is-invalid]="(marque.dirty && marque.invalid ||
+                                 backEndErrors?.marque)"
+                                 [ngModelOptions]="{updateOn: 'blur'}" required></dd>
 
         <dt class="col-4">Modèle</dt>
         <dd class="col-8"><input type="number" class="form-control" name="modele"
                                  [(ngModel)]="this.vehiculeAdd.modele"
-                                 #modele="ngModel" required></dd>
+                                 #modele="ngModel"
+                                 [class.is-invalid]="(modele.dirty && modele.invalid)
+                                  ||backEndErrors?.modele"
+                                 [ngModelOptions]="{updateOn: 'blur'}" required></dd>
 
         <dt class="col-4">Catégorie</dt>
         <dd class="col-8"><select name="categorie" class="form-control" [(ngModel)]="this.vehiculeAdd.categorie"
-                                  #categorie="ngModel" required>
-          <option *ngFor="let categorie of categories" value="{{categorie}}">{{categorie}}</option>
+                                  #categorie="ngModel"
+                                  [class.is-invalid]="(categorie.dirty && categorie.invalid)
+                                  ||backEndErrors?.categorie"
+                                  [ngModelOptions]="{updateOn: 'blur'}" required>
+          <option *ngFor="let categorie of categories;index as i" value="{{categories[i][1]}}">{{categories[i][0]}}</option>
         </select></dd>
 
         <dt class="col-4">Nombre de places</dt>
-        <dd class="col-8"><input type="text" class="form-control" name="nbPlace"
+        <dd class="col-8"><input type="number" min="1" max="20" class="form-control" name="nbPlace"
                                  [(ngModel)]="this.vehiculeAdd.nbPlaceDispo"
-                                 #nbPlace="ngModel" required></dd>
+                                 #nbPlace="ngModel"
+                                 [class.is-invalid]="(nbPlace.dirty && nbPlace.invalid)
+                                  ||backEndErrors?.nbPlace"
+                                 [ngModelOptions]="{updateOn: 'blur'}" required></dd>
 
         <dt class="col-4">URL photo</dt>
         <dd class="col-8"><input type="text" class="form-control" name="photo"
                                  [(ngModel)]="this.vehiculeAdd.photoUrl"
-                                 #urlPhoto="ngModel" required></dd>
+                                 #urlPhoto="ngModel"
+                                 [class.is-invalid]="(urlPhoto.dirty && urlPhoto.invalid)
+                                  ||backEndErrors?.photoUrl"
+                                 [ngModelOptions]="{updateOn: 'blur'}" required></dd>
       </dl>
+      <div *ngIf="errorValidation == true" class="alert alert-danger mt-2" role="alert">
+        <p>Impossible de créer le véhicule</p>
+        <ul>
+          <li *ngIf="backEndErrors.immatriculation">{{backEndErrors.immatriculation}}</li>
+          <li *ngIf="backEndErrors.marque">{{backEndErrors.marque}}</li>
+          <li *ngIf="backEndErrors.modele">{{backEndErrors.modele}}</li>
+          <li *ngIf="backEndErrors.categorie">{{backEndErrors.categorie}}</li>
+          <li *ngIf="backEndErrors.nbPlace">{{backEndErrors.nbPlace}}</li>
+          <li *ngIf="backEndErrors.photoUrl">{{backEndErrors.photoUrl}}</li>
+        </ul>
+      </div>
 
     </div>
     <div class="modal-footer">
       <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
               (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
       <button type="button" mdbBtn color="primary"
-              class="relative waves-light" mdbWavesEffect [disabled]="ajoutVehicule.invalid" (click)="ajouterVehicule()">Confirmer</button>
+              class="relative waves-light" mdbWavesEffect
+              [disabled]="ajoutVehicule.invalid" (click)="ajouterVehicule()">Confirmer</button>
     </div>
     </form>
   </ng-template>
