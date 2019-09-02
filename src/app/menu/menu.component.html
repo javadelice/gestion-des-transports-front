@@ -23,8 +23,8 @@
             <span class="navbar-text white-text">
 
                   Bonjour
-                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
-                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}} {{(collegueConnecte | async).prenom}}</span>
+                
 
           </span>
 
@@ -57,8 +57,8 @@
             <span class="navbar-text white-text">
 
                   Bonjour
-                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
-                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}} {{(collegueConnecte | async).prenom}}</span>
+               
 
           </span>
 
@@ -91,9 +91,8 @@
             <span class="navbar-text white-text">
 
                   Bonjour
-                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}}</span>
-                <span class="navbar-text white-text">({{(collegueConnecte | async).prenom}})</span>
-
+                <span class="navbar-text white-text">{{(collegueConnecte | async).nom}} {{(collegueConnecte | async).prenom}}</span>
+               
           </span>
 
           <button mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" (click)="seDeconnecter()"

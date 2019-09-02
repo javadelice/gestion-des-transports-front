@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component ({
   selector: 'app-reservation-creer',
   templateUrl: './reservation-creer.component.html',
   styleUrls: ['./reservation-creer.component.css']
