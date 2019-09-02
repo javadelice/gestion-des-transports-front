@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {CovoitResaService} from '../covoiturage/covoit-resa/covoit-resa.service';
-import {AnnonceCovoitResa} from '../models/AnnonceCovoitResa';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import { AnnonceCovoitResa } from 'src/app/models/AnnonceCovoitResa';
+import { CovoitResaService } from '../covoit-resa/covoit-resa.service';
 
 @Component({
-  selector: 'app-reservation-vehicule-covoit',
-  templateUrl: './reservation-vehicule-covoit.component.html',
-  styleUrls: ['./reservation-vehicule-covoit.component.css']
+  selector: 'app-reservation-covoit',
+  templateUrl: './reservation-covoit.component.html',
+  styleUrls: ['./reservation-covoit.component.css']
 })
-export class ReservationVehiculeCovoitComponent implements OnInit {
+export class ReservationCovoitComponent implements OnInit {
 
   annonces: AnnonceCovoitResa[];
   error: string;

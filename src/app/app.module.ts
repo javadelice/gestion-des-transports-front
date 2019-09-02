@@ -25,8 +25,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
 import {ResaVehiculeCreerComponent} from './resa-vehicule-creer/resa-vehicule-creer.component';
-import {ReservationVehiculeCovoitComponent} from './reservation-vehicule-covoit/reservation-vehicule-covoit.component';
-import { GestionVehiculesComponent } from './admin/gestion-vehicules/gestion-vehicules.component';
+import {GestionVehiculesComponent} from './admin/gestion-vehicules/gestion-vehicules.component';
+import {ReservationCovoitComponent} from './covoiturage/reservation-covoit/reservation-covoit.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -36,6 +36,7 @@ const routes: Routes = [
   {path: 'annonces', component: AnnoncesComponent, canActivate: [StatutConnecteService]},
   {path: 'statistiques', component: StatistiquesComponent, canActivate: [StatutConnecteService]},
   { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
+  {path: 'chauffeurs', component: ChauffeursComponent , canActivate: [StatutConnecteService]},
   { path: 'vehicules', component: GestionVehiculesComponent, canActivate: [StatutConnecteService]},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
@@ -56,7 +57,7 @@ const routes: Routes = [
     ChauffeursComponent,
     VehiculeResaComponent,
     ResaVehiculeCreerComponent,
-    ReservationVehiculeCovoitComponent,
+    ReservationCovoitComponent,
     VehiculeResaComponent,
     PublierAnnonceComponent,
     GestionVehiculesComponent
@@ -67,9 +68,9 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule,
     NgbModule,
     FormsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

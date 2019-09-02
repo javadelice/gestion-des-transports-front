@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AnnonceCovoitResa} from '../../models/AnnonceCovoitResa';
 import {CovoitResaService} from './covoit-resa.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { ResaCovoit } from 'src/app/models/ResaCovoit';
