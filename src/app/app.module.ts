@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -8,10 +7,8 @@ import {TechComponent} from './tech/tech.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AuthComponent} from './auth/auth.component';
 import {FormsModule} from '@angular/forms';
-
 import {StatutConnecteService} from './auth/statut-connecte.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
-
 import {ReservationComponent} from './reservation/reservation.component';
 import {VehiculeResaComponent} from './vehicule-resa/vehicule-resa.component';
 import {CovoitResaComponent} from './covoiturage/covoit-resa/covoit-resa.component';
@@ -26,6 +23,7 @@ import {ChauffeursComponent} from './chauffeurs/chauffeurs.component';
 import {PublierAnnonceComponent} from './covoiturage/publier-annonce/publier-annonce.component';
 import {ResaVehiculeCreerComponent} from './resa-vehicule-creer/resa-vehicule-creer.component';
 import {ReservationCovoitComponent} from './covoiturage/reservation-covoit/reservation-covoit.component';
+import { VehiculesComponent } from './vehicules/vehicules.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -36,7 +34,7 @@ const routes: Routes = [
   {path: 'statistiques', component: StatistiquesComponent, canActivate: [StatutConnecteService]},
   { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
   {path: 'chauffeurs', component: ChauffeursComponent},
-
+  {path: 'vehicules', component: VehiculesComponent},
   {path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -58,7 +56,8 @@ const routes: Routes = [
     ResaVehiculeCreerComponent,
     ReservationCovoitComponent,
     VehiculeResaComponent,
-    PublierAnnonceComponent
+    PublierAnnonceComponent,
+    VehiculesComponent
   ],
   imports: [
     BrowserModule,
