@@ -13,8 +13,8 @@
           <label class="ml-2">Matricule </label>
         </div>
         <div class="col-md-4">
-          <input type="search" class="form-control" [(ngModel)]="matricule"
-            name="maricule" (ngModelChange)="searchChauffeur()" placeholder="Recherche par matricule">
+          <input type="search" class="form-control" [(ngModel)]="matricule" name="maricule"
+            (ngModelChange)="searchChauffeur()" placeholder="Recherche par matricule">
         </div>
       </div>
       <div class="row align-items-center mt-3">
@@ -45,41 +45,42 @@
 </mdb-card>
 
 
-<div *ngIf="collegues.length>0">
-  <div class="card my-3" style="max-width: 540px;" *ngFor="let collegue of colleguesFiltered">
-    <div class="card-header">
-      <h4 class="my-0 font-weight-normal">{{collegue.nom}} {{collegue.prenom}}</h4>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="https://www.w3schools.com/howto/img_avatar2.png" class="card-img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-sm-5">Matricule:</dt>
-              <dd class="col-sm-7">{{collegue.matricule}}</dd>
-              <dt class="col-sm-5">Nom: </dt>
-              <dd class="col-sm-7">{{collegue.nom}}</dd>
-              <dt class="col-sm-5">Prenom:</dt>
-              <dd class="col-sm-7">{{collegue.prenom}}</dd>
-              <dt class="col-sm-5">Permis:</dt>
-              <dd class="col-sm-7">{{collegue.permis}}</dd>
-              <dt class="col-sm-5">Email:</dt>
-              <dd class="col-sm-7">{{collegue.email}}</dd>
-              <dt class="col-sm-5">Téléphone:</dt>
-              <dd class="col-sm-7">{{collegue.telephone}}</dd>
 
+    <div class="cards" *ngIf="collegues?.length>0">
+      <div class="card my-3 mx-1 p-1" style="max-width: 540px;" *ngFor="let collegue of colleguesFiltered">
 
-            </dl>
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{collegue.nom}} {{collegue.prenom}}</h4>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-4 my-3 ml-1">
+            <img src="{{collegue.urlPhoto}}" class="img-fluid z-depth-1 rounded-circle"
+            alt="No image">
           </div>
-
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="card-text">
+                <dl class="row">
+                  <dt class="col-sm-4">Matricule</dt>
+                  <dd class="col-sm-8">{{collegue.matricule}}</dd>
+                  <dt class="col-sm-4">Nom </dt>
+                  <dd class="col-sm-8">{{collegue.nom}}</dd>
+                  <dt class="col-sm-4">Prenom</dt>
+                  <dd class="col-sm-8">{{collegue.prenom}}</dd>
+                  <dt class="col-sm-4">Permis</dt>
+                  <dd class="col-sm-8">{{collegue.permis}}</dd>
+                  <dt class="col-sm-4">Email</dt>
+                  <dd class="col-sm-8">{{collegue.email}}</dd>
+                  <dt class="col-sm-4">Téléphone</dt>
+                  <dd class="col-sm-8">{{collegue.telephone}}</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
 
 <!--FENETRE MODALE: AJOUT CHAUFFEUR-->
 <ng-template #content let-modal>
