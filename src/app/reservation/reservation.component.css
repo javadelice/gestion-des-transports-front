@@ -1,0 +1,19 @@
+::ng-deep div.card-header:hover {
+
+  background-color: #dbf6fa;
+  }
+
+  ::ng-deep div.card-header {
+    background-color: #dbf6fa;
+
+  text-decoration: none !important;
+  }
+
+  ::ng-deep div.card-body {
+  background-color: var(--subtle-gray);
+  }
+
+  ::ng-deep div.h6 {
+
+    font-weight: bold;
+  }
