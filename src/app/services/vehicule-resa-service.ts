@@ -45,9 +45,8 @@ export class VehiculeResaService {
     return this._http.post<Vehicule>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, { 'disponible': true });
   }
 
-  public afficherReservationsAVenir(): Observable<ResaVehicule[]>{
-    return;
+  public rechercherVehiculeParImmatriculation(immatriculation: string): Observable<Vehicule>{
+    return this._http.get<Vehicule>(`${URL_BASE}vehicules/${immatriculation}`);
   }
-
 }
 

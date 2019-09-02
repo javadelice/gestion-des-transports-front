@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ResaVehicule } from '../models/ResaVehicule';
 import { VehiculeResaService } from '../services/vehicule-resa-service';
+import { Vehicule } from '../models/Vehicule';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-vehicules',
@@ -11,23 +13,23 @@ export class VehiculesComponent implements OnInit {
 
   reservationsAVenir: ResaVehicule[];
   reservationsPassees: ResaVehicule []= Array();
+  vehicule: Vehicule = new Vehicule();
+  immatriculation: string;
   collectionSize;
 
   headElements = ['Date / heure début', 'Date / heure fin', 'Responsable'];
 
-  constructor(private srv: VehiculeResaService) { }
+  constructor(private srv: VehiculeResaService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.srv.afficherReservationsAVenir().subscribe(annoncesEnCours => { this.reservationsAVenir = annoncesEnCours; });
-
-    this.srv.afficherReservationsAVenir().subscribe(reservationsPassees => {
-    this.reservationsPassees = reservationsPassees;
-      this.collectionSize = reservationsPassees.length;
+    this.route.paramMap.subscribe((params: ParamMap) => {
+    this.immatriculation = params.get('immatriculation');
+    this.srv.rechercherVehiculeParImmatriculation(this.immatriculation)
+    .subscribe(v => this.vehicule = v);
     });
   }
 
-  get resasHisto(): ResaVehicule[] {
-    return this.reservationsPassees;
-  }
+
+
 
 }

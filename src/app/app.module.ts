@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'annonces/creer', component: PublierAnnonceComponent, canActivate: [StatutConnecteService]},
   {path: 'chauffeurs', component: ChauffeursComponent , canActivate: [StatutConnecteService]},
   { path: 'vehicules', component: GestionVehiculesComponent, canActivate: [StatutConnecteService]},
+  { path: 'vehicules/:immatriculation', component: VehiculesComponent, canActivate: [StatutConnecteService]},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
