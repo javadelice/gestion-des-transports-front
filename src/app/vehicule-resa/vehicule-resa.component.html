@@ -14,6 +14,8 @@
         <td>{{reservationVehicule.vehiculeSociete.immatriculation}}</td>
         <td>{{reservationVehicule.vehiculeSociete.marque}}</td>
         <td>{{reservationVehicule.vehiculeSociete.modele}}</td>
+        <td *ngIf="reservationVehicule.statut === 'EN_ATTENTE'">En attente</td>
+        <td *ngIf="reservationVehicule.statut === 'ACCEPTEE'">{{reservationVehicule.chauffeur.nomComplet}}</td>
       </tr>
     </tbody>
   </table>
@@ -35,7 +37,8 @@
         <td>{{historiques.vehiculeSociete.immatriculation}}</td>
         <td>{{historiques.vehiculeSociete.marque}}</td>
         <td>{{historiques.vehiculeSociete.modele}}</td>
-      </tr>
+        <td *ngIf="historiques.statut === 'EN_ATTENTE'">En attente</td>
+        <td *ngIf="historiques.statut === 'ACCEPTEE'">{{historiques.chauffeur.nomComplet}}</td>
     </tbody>
   </table>
 

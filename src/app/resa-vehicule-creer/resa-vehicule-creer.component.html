@@ -1,5 +1,8 @@
 <form #faireReservation="ngForm" class="was-validated">
-
+  <div class="text-right">
+    <mdb-checkbox #changeStatut="ngModel" [(ngModel)]="infoResa.avecChauffeur" name="avecChauffeur" [checked]="false"
+      value="true">Avec Chauffeur</mdb-checkbox>
+  </div>
   <!--CHAMPS DATE ET HEURE-->
   <div class="row align-items-center mt-3 mb-3">
     <div class="col-md-3">
@@ -7,7 +10,7 @@
     </div>
     <div class="col-md-4">
       <input class="form-control mb-1" type="date" id="dateDepart" name="dateDebut" [(ngModel)]="infoResa.dateDepart"
-        #dateDepart="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required (ngModelChange)="listerVehicules()"/>
+        #dateDepart="ngModel" min="{{currentDate | date: 'yyyy-MM-dd'}}" required (ngModelChange)="listerVehicules()" />
       <div *ngIf="dateDepart.dirty && dateDepart.invalid " class="invalid-feedback">La date de réservation est
         obligatoire
       </div>
@@ -48,7 +51,7 @@
     </div>
     <div class="col-md-2">
       <select class="custom-select mr-sm-2 mb-1" id="minuteDepart" name="minuteDepart"
-        [(ngModel)]="infoResa.minuteDepart"  #minuteDepart="ngModel" (ngModelChange)="listerVehicules()" required>
+        [(ngModel)]="infoResa.minuteDepart" #minuteDepart="ngModel" (ngModelChange)="listerVehicules()" required>
         <option value="00">00</option>
         <option value="10">10</option>
         <option value="20">20</option>
@@ -64,8 +67,9 @@
       <label for="dateRetour" class="text-center mt-2">Date/heure de retour :</label>
     </div>
     <div class="col-md-4">
-      <input (invalid)="erreur" class="form-control mb-1" type="date" id="dateRetour" name="dateRetour" [(ngModel)]="infoResa.dateRetour"
-        #dateRetour="ngModel" min="{{infoResa.dateDepart | date: 'yyyy-MM-dd'}}" (ngModelChange)="listerVehicules()" required />
+      <input (invalid)="erreur" class="form-control mb-1" type="date" id="dateRetour" name="dateRetour"
+        [(ngModel)]="infoResa.dateRetour" #dateRetour="ngModel" min="{{infoResa.dateDepart | date: 'yyyy-MM-dd'}}"
+        (ngModelChange)="listerVehicules()" required />
       <div *ngIf="dateRetour.dirty && dateRetour.invalid " class="invalid-feedback">La date de retour est obligatoire
       </div>
     </div>
@@ -117,65 +121,67 @@
 
   <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
     <div *ngFor="let vehicule of vehicules">
-    <mdb-carousel-item >
-      <div class="view w-100">
-        <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
-        <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
-      </div>
-      <div class="carousel-caption">
-        <div class="text-center">
-          <h5>{{vehicule.immatriculation}} <br>
-            {{vehicule.marque}} - {{vehicule.modele}} <br>
-            {{vehicule.categorie}} <br>
-            <p class="text-danger" *ngIf="vehicule.indisponible === 'Indisponible'">{{vehicule.indisponible}}</p></h5>
+      <mdb-carousel-item>
+        <div class="view w-100">
+          <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
+          <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
         </div>
+        <div class="carousel-caption">
+          <div class="text-center">
+            <h5>{{vehicule.immatriculation}} <br>
+              {{vehicule.marque}} - {{vehicule.modele}} <br>
+              {{vehicule.categorie}} <br>
+              <p class="text-danger" *ngIf="vehicule.indisponible === 'Indisponible'">{{vehicule.indisponible}}</p>
+            </h5>
+          </div>
 
-        <div class="mb-4 d-flex justify-content-center">
-          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="modalService.open(content)"
-                  [disabled]="faireReservation.invalid " [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
+          <div class="mb-4 d-flex justify-content-center">
+            <button type="button" mdbBtn color="primary" class="relative waves-light"
+              (click)="modalService.open(content)" [disabled]="faireReservation.invalid "
+              [hidden]="vehicule.indisponible === 'Indisponible'">Réserver</button>
+          </div>
+
         </div>
-
-      </div>
-    </mdb-carousel-item>
+      </mdb-carousel-item>
       <ng-template #content let-modal>
-            <div class="modal-header">
-              <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un véhicule</h4>
-            </div>
-            <div class="modal-body">
-              <dl class="row">
-                <dt class="col-4">Date/heure de réservation</dt>
-                <dd class="col-8">{{dateDepart.value}}/ {{heureDepart.value}}h{{minuteDepart.value}}</dd>
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Réservation d'un véhicule</h4>
+        </div>
+        <div class="modal-body">
+          <dl class="row">
+            <dt class="col-4">Date/heure de réservation</dt>
+            <dd class="col-8">{{dateDepart.value}}/ {{heureDepart.value}}h{{minuteDepart.value}}</dd>
 
-                <dt class="col-4">Date/heure retour</dt>
-                <dd class="col-8">{{dateRetour.value}}/ {{heureRetour.value}}h{{minuteRetour.value}}</dd>
+            <dt class="col-4">Date/heure retour</dt>
+            <dd class="col-8">{{dateRetour.value}}/ {{heureRetour.value}}h{{minuteRetour.value}}</dd>
 
-                <dt class="col-4">Immatriculation</dt>
-                <dd class="col-8">{{vehicule.immatriculation}}</dd>
+            <dt class="col-4">Immatriculation</dt>
+            <dd class="col-8">{{vehicule.immatriculation}}</dd>
 
-                <dt class="col-4">Marque</dt>
-                <dd class="col-8">{{vehicule.marque}}</dd>
+            <dt class="col-4">Marque</dt>
+            <dd class="col-8">{{vehicule.marque}}</dd>
 
-                <dt class="col-4">Modèle</dt>
-                <dd class="col-8">{{vehicule.modele}}</dd>
-              </dl>
+            <dt class="col-4">Modèle</dt>
+            <dd class="col-8">{{vehicule.modele}}</dd>
+          </dl>
 
-              <div *ngIf="erreur == true" class="alert alert-danger mt-2" role="alert">
-                <p>Impossible de créer l'annonce</p>
-                <ul>
-                  <li *ngIf="errors?.dateDebut">{{errors.dateDebut}}</li>
-                  <li *ngIf="errors?.dateRetour">{{errors.dateRetour}}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
-              <button type="button" mdbBtn color="primary"
-                      class="relative waves-light" (click)="creerReservationVehicule(vehicule)" (invalid)="errors" mdbWavesEffect>Confirmer</button>
-            </div>
+          <div *ngIf="erreur == true" class="alert alert-danger mt-2" role="alert">
+            <p>Impossible de créer l'annonce</p>
+            <ul>
+              <li *ngIf="errors?.dateDebut">{{errors.dateDebut}}</li>
+              <li *ngIf="errors?.dateRetour">{{errors.dateRetour}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
+          <button type="button" mdbBtn color="primary" class="relative waves-light"
+            (click)="creerReservationVehicule(vehicule)" (invalid)="errors" mdbWavesEffect>Confirmer</button>
+        </div>
       </ng-template>
     </div>
   </mdb-carousel>
