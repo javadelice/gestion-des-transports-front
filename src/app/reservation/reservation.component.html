@@ -1,22 +1,31 @@
 <h1>Vos réservations</h1>
-<div class="container-fluid m-1">
+<div class="container-fluid m-1" class="my-5">
   <div class="text-right">
     <button type="button" class="btn btn-light" routerLink="/reservations/creer">Réserver un transport</button>
   </div>
 </div>
 
-<button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
-  Covoiturage
-</button>
 
-<div class="" mdbCollapse #test="bs-collapse">
-  <app-covoit-resa></app-covoit-resa>
+<div class="my-5">
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel id="static-1">
+      <ng-template ngbPanelTitle>
+          <span> <h6>Covoiturage  </h6></span>
+        </ng-template>
+    <ng-template ngbPanelContent>
+      <app-covoit-resa></app-covoit-resa>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-2">
+      <ng-template ngbPanelTitle>
+          <span> <h6>Véhicule de service </h6></span>
+
+        </ng-template>
+    <ng-template ngbPanelContent>
+      <app-vehicule-resa></app-vehicule-resa>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
 </div>
 
-<button mdbBtn color="primary" class="waves-light" type="button" (click)="test1.toggle()" mdbWavesEffect>
-  Véhicules de société
-</button>
 
-<div class="" mdbCollapse #test1="bs-collapse">
-  <app-vehicule-resa></app-vehicule-resa>
-</div>
