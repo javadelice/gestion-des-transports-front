@@ -32,9 +32,9 @@
           <div class="col-md-4">
 
             <input type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
-              [(ngModel)]="infoCovoit.adresseDepart" #lieuDepart="ngModel" placeholder="Gare de Nantes" required>
+              [(ngModel)]="infoCovoit.adresseDepart" #lieuDepart="ngModel" (blur)="afficherItineraire()" required>
             <div *ngIf="lieuDepart.dirty && lieuDepart.invalid" class="invalid-feedback">L'adresse de départ est
-              inconnue.</div>
+              obligatoire.</div>
           </div>
         </div>
 
@@ -50,10 +50,11 @@
           <div class="col-md-4">
 
             <input type="text" class="form-control" id="adresse_destination" name="lieuDestination"
-              [(ngModel)]="infoCovoit.adresseDestination" #lieuDestination="ngModel" placeholder="Gare de Lyon"
+              [(ngModel)]="infoCovoit.adresseDestination" #lieuDestination="ngModel" (blur)="afficherItineraire()"
               required>
             <div *ngIf="lieuDestination.dirty && lieuDestination.invalid" class="invalid-feedback">L'adresse de
-              destination est inconnue.</div>
+              destination est obligatoire.</div>
+            <div *ngIf="adresseBackEndErrors">{{adresseBackEndErrors}}</div>
 
           </div>
         </div>
@@ -73,9 +74,10 @@
 
           </div>
 
-          <div class="col-4 mt-2" *ngIf="lieuDepart.value && lieuDestination.value">
+          <div class="col-4 mt-2" *ngIf="!lieuDepart.invalid && !lieuDestination.invalid">
 
-            <p>2H51</p>
+            <p>{{itineraire?.duree}}</p>
+
 
           </div>
         </div>
@@ -86,8 +88,8 @@
             <label class="ml-2">Distance : </label>
           </div>
 
-          <div class="col-md-4 mt-2" *ngIf="lieuDepart.value && lieuDestination.value">
-            <p>250km</p>
+          <div class="col-md-4 mt-2" *ngIf="itineraire?.distance !== null">
+            <p>{{itineraire?.distance + " km"}}</p>
           </div>
         </div>
 

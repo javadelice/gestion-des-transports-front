@@ -4,6 +4,7 @@ import { InfoCovoit } from '../models/InfoCovoit';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AnnonceCovoitList } from '../models/AnnonceCovoitList';
+import { Itineraire } from '../models/Itineraire';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class AnnonceCovoitService {
 
   suppressionAnnonce(annonceCovoit: AnnonceCovoitList) {
     return this.httpClient.patch<AnnonceCovoitList>(environment.baseUrl + 'collaborateur/annonces_annulation', annonceCovoit, { withCredentials: true });
+  }
+
+  getItineraire(adresseDepart: string, adresseDest: string): Observable<Itineraire> {
+    return this.httpClient.get<Itineraire>(`${environment.baseUrl}collaborateur/annonces/creer_itineraire?adresseDepart=${adresseDepart}&adresseDest=${adresseDest}`);
   }
 }
