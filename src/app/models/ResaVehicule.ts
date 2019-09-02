@@ -1,5 +1,5 @@
 import { Vehicule } from './Vehicule';
-import { Collegue } from '../auth/auth.domains';
+import {Chauffeur, Collegue} from './Collegue';
 
 export class ResaVehicule {
 
@@ -8,7 +8,10 @@ export class ResaVehicule {
     public dateDeDebut?: Date,
     public dateDeFin?: Date,
     public vehiculeSociete?: Vehicule,
-    public passager?: Collegue) {
+    public passager?: Chauffeur,
+    public chauffeur?: Chauffeur,
+    public statut?: string
+  ) {
 
   }
 

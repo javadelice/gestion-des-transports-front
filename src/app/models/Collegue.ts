@@ -1,14 +1,22 @@
 export class Collegue {
 
   constructor (
-    public id?:number,
+    public id?: number,
     public nom?: string,
-    public prenom?:string,
+    public prenom?: string,
     public email?: string,
-    public permis?:string,
+    public permis?: string,
     public telephone?: string,
     public roles?: string[],
-    public matricule?: string){
+    public matricule?: string) {
 
+  }
 }
+
+export class Chauffeur {
+  constructor(
+    public nomComplet?: string,
+    public email?: string
+  ) {
+  }
 }

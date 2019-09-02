@@ -13,9 +13,9 @@ export class ChauffeursComponent implements OnInit {
   collegues: Collegue[];
   colleguesFiltered: Collegue[];
   idCollegue: number;
-  matricule: string = "";
-  nom: string = "";
-  prenom: string = "";
+  matricule = '';
+  nom = '';
+  prenom = '';
 
 
   constructor(private srv: ChauffeursService, private modalService: NgbModal) { }
@@ -36,26 +36,26 @@ export class ChauffeursComponent implements OnInit {
 this.colleguesFiltered = this.collegues
 .filter(
   collegue => {
-    if (this.matricule !== ""){
+    if (this.matricule !== '') {
       return collegue.matricule.toLowerCase().includes(this.matricule.toLowerCase());
     } else {
       return true;
     }})
 .filter(
 collegue => {
-  if (this.nom !== ""){
+  if (this.nom !== '') {
     return collegue.nom.toLowerCase().includes(this.nom.toLowerCase());
   } else {
     return true;
   }})
   .filter(
   collegue => {
-    if (this.prenom !== ""){
+    if (this.prenom !== '') {
       return collegue.prenom.toLowerCase().includes(this.prenom.toLowerCase());
     } else {
       return true;
     }
-  })}
+  }); }
 
   changeRoleChauffeur() {
     console.log(this.idCollegue);
@@ -65,7 +65,7 @@ collegue => {
         this.modalService.dismissAll();
         this.ngOnInit();
       },
-        err => { })
+        err => { });
   }
 
 }
