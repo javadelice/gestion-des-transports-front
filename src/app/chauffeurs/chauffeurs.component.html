@@ -13,8 +13,8 @@
           <label class="ml-2">Matricule </label>
         </div>
         <div class="col-md-4">
-          <input type="search" class="form-control" [(ngModel)]="matricule" 
-            name="maricule" placeholder="Recherche par matricule">
+          <input type="search" class="form-control" [(ngModel)]="matricule"
+            name="maricule" (ngModelChange)="searchChauffeur()" placeholder="Recherche par matricule">
         </div>
       </div>
       <div class="row align-items-center mt-3">
@@ -52,14 +52,14 @@
     </div>
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="assets/icons/logo.svg" class="card-img" alt="...">
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" class="card-img" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <div class="card-text">
             <dl class="row">
               <dt class="col-sm-5">Matricule:</dt>
-              <dd class="col-sm-7">{{collegue.id}}</dd>
+              <dd class="col-sm-7">{{collegue.matricule}}</dd>
               <dt class="col-sm-5">Nom: </dt>
               <dd class="col-sm-7">{{collegue.nom}}</dd>
               <dt class="col-sm-5">Prenom:</dt>

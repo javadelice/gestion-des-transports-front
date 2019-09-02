@@ -7,7 +7,8 @@ export class Collegue {
     public email?: string,
     public permis?:string,
     public telephone?: string,
-    public roles?: string[]){
+    public roles?: string[],
+    public matricule?: string){
 
 }
 }

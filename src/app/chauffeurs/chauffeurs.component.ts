@@ -16,7 +16,7 @@ export class ChauffeursComponent implements OnInit {
   matricule: string = "";
   nom: string = "";
   prenom: string = "";
-  
+
 
   constructor(private srv: ChauffeursService, private modalService: NgbModal) { }
 
@@ -34,13 +34,13 @@ export class ChauffeursComponent implements OnInit {
 
   searchChauffeur() {
 this.colleguesFiltered = this.collegues
-/*.filter(
+.filter(
   collegue => {
     if (this.matricule !== ""){
-      return collegue.id == this.matricule;
+      return collegue.matricule.toLowerCase().includes(this.matricule.toLowerCase());
     } else {
       return true;
-    }})*/
+    }})
 .filter(
 collegue => {
   if (this.nom !== ""){
