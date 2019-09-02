@@ -20,7 +20,7 @@ export class VehiculesComponent implements OnInit {
   ngOnInit() {
     this.srv.afficherReservationsAVenir().subscribe(annoncesEnCours => { this.reservationsAVenir = annoncesEnCours; });
 
-    this.srv.afficherAnciennesAnnonces().subscribe(reservationsPassees => {
+    this.srv.afficherReservationsAVenir().subscribe(reservationsPassees => {
     this.reservationsPassees = reservationsPassees;
       this.collectionSize = reservationsPassees.length;
     });
