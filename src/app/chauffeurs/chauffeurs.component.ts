@@ -10,6 +10,7 @@ import { Collegue } from '../models/Collegue';
 })
 export class ChauffeursComponent implements OnInit {
 
+  collegue: Collegue;
   collegues: Collegue[];
   colleguesFiltered: Collegue[];
   idCollegue: number;
