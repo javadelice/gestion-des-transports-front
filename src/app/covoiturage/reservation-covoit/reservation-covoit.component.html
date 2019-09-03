@@ -4,30 +4,36 @@
 </div>
 <!--PUBLICATION-->
 <!--(ngSubmit)="ajouterAnnonce()"#ajoutAnnonce="ngForm"-->
-<form #ajoutAnnonce="ngForm" class="was-validated">
+<form #ajoutAnnonce="ngForm" >
   <div class="mb-3">
     <div class="row align-items-center mt-3">
       <div class="form-group col-md-4">
         <!--ADRESSE DÉPART-->
         <label for="adresse_depart" class="ml-2">Adresse de départ </label>
         <!--BARRE RECHERCHE DÉPART-->
-        <input #saisieDep type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
-          placeholder="Gare de Nantes" [(ngModel)]="lieuDepart" (blur)="selectionLieu()" required>
+        <input #saisieDep="ngModel" type="text" class="form-control is-invalid" id="adresse_depart" name="lieuDepart"
+          placeholder="" [(ngModel)]="lieuDepart" (blur)="selectionLieu();afficherItineraire()"
+               [class.is-invalid]="(saisieDep.dirty && saisieDep.invalid)
+                                  || backBoolean " required>
+        <div *ngIf="saisieDep.invalid || backBoolean" class="invalid-feedback">{{adresseBackEndErrors}}</div>
       </div>
 
       <div class="form-group col-md-4">
         <!--ADRESSE DESTINATION-->
         <label for="adresse_destination" class="ml-2">Adresse de destination </label>
         <!--BARRE RECHERCHE DESTINATION-->
-        <input #saisieDest type="text" class="form-control" id="adresse_destination" name="lieuDestination"
-          placeholder="Gare de Lyon" [(ngModel)]="lieuArrivee" (blur)="selectionLieu()" required>
+        <input #saisieDest="ngModel" type="text" class="form-control" id="adresse_destination" name="lieuDestination"
+          placeholder="" [(ngModel)]="lieuArrivee" (blur)="selectionLieu();afficherItineraire()"
+               [class.is-invalid]="( saisieDest.dirty && saisieDest.invalid)
+                                  || backBoolean "required>
+        <div *ngIf="saisieDest.invalid || backBoolean" class="invalid-feedback">{{adresseBackEndErrors}}</div>
       </div>
 
       <div class="form-group col-md-4">
         <!--DURÉE DU TRAJET-->
         <label class="ml-2">Durée du trajet </label>
         <div>
-          <p>2h45</p>
+          <p>{{itineraire?.duree}}</p>
         </div>
       </div>
     </div>
@@ -44,7 +50,7 @@
         <!--DISTANCE-->
         <label class="ml-2">Distance</label>
         <div>
-          <p>286 km</p>
+          <p>{{itineraire?.distance}} Km</p>
         </div>
       </div>
     </div>
