@@ -54,7 +54,7 @@
               required>
             <div *ngIf="lieuDestination.dirty && lieuDestination.invalid" class="invalid-feedback">L'adresse de
               destination est obligatoire.</div>
-            <div *ngIf="adresseBackEndErrors">{{adresseBackEndErrors}}</div>
+            <div *ngIf="backBoolean">{{adresseBackEndErrors}}</div>
 
           </div>
         </div>
@@ -88,7 +88,7 @@
             <label class="ml-2">Distance : </label>
           </div>
 
-          <div class="col-md-4 mt-2" *ngIf="itineraire?.distance !== null">
+          <div class="col-md-4 mt-2" *ngIf="itineraire?.distance != undefined">
             <p>{{itineraire?.distance + " km"}}</p>
           </div>
         </div>
@@ -305,6 +305,7 @@
               <ul>
                 <li *ngIf="backEndErrors.dateDebut">{{backEndErrors.dateDebut}}</li>
                 <li *ngIf="backEndErrors.nbPlaceDispo">{{backEndErrors.nbPlaceDispo}}</li>
+                <li *ngIf="backEndErrors.immatriculation">{{backEndErrors.immatriculation}}</li>
               </ul>
             </div>
 

@@ -18,6 +18,7 @@ export class PublierAnnonceComponent implements OnInit {
   infoCovoit = new InfoCovoit('', '', '', '', '', '', '', '', '');
   errorValidation = false;
   backEndErrors: any = {};
+  backBoolean : boolean = false;
   adresseBackEndErrors: string;
   currentDate = new Date();
   itineraire:Itineraire;
@@ -41,9 +42,15 @@ export class PublierAnnonceComponent implements OnInit {
 
     if (this.infoCovoit.adresseDepart !== '' && this.infoCovoit.adresseDestination !== ''){
         this._ajoutAnnonce.getItineraire(this.infoCovoit.adresseDepart, this.infoCovoit.adresseDestination).subscribe(
-        (itineraire) => {this.itineraire = itineraire},
+        (itineraire) => {
+          this.itineraire = itineraire
+          this.backBoolean = false;
+        },
         (respError : HttpErrorResponse) => {
           this.adresseBackEndErrors = respError.error;
+          this.backBoolean = true;
+          this.itineraire.distance = undefined;
+          this.itineraire.duree = undefined;
         }
         );
     }
