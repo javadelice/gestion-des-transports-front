@@ -3,74 +3,75 @@
 </div>
 
 <div class="font-weight-bold mb-4 d-flex justify-content-end">
-  <a routerLink="/annonces/creer"><button type="button" class="btn btn-outline-dark btn-sm">Créer une nouvelle
-      annonce</button></a>
+  <a routerLink="/annonces/creer">
+    <button type="button" class="btn btn-light" routerLink="/reservations/creer">Créer une nouvelle annonce</button></a>
 </div>
 
-<p class="font-weight-bold">Annonces en cours</p>
-<div *ngIf="annoncesEnCours?.length >= 1; else elseEnCours">
-  <table mdbTable bordered="true">
-    <thead>
-      <tr class="blue-gradient white-text">
-        <th>Date / Heure de départ</th>
-        <th>Lieu de départ</th>
-        <th>Lieu de destination</th>
-        <th>Nombre de voyageurs</th>
-        <th>Statut</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let annonce of annoncesEnCours">
-        <td scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</td>
-        <td>{{annonce?.itineraire.adresseDepart}}</td>
-        <td>{{annonce?.itineraire.adresseDest}}</td>
-        <td>{{annonce?.nbVoyageurs}}</td>
-        <td class="d-flex justify-content-center">
-          <button type="button" mdbBtn color="primary" class="relative waves-light btn-sm" (click)="basicModal.show()"
-            mdbWavesEffect>Annuler</button>
+<div class="my-5">
+  <h6 class="font-weight-bold">Annonces en cours</h6>
+  <div *ngIf="annoncesEnCours.length >= 1; else elseEnCours">
+    <table class="table table-hover">
+      <thead>
+        <tr class="blue-gradient white-text">
+          <th>Date / Heure de départ</th>
+          <th>Lieu de départ</th>
+          <th>Lieu de destination</th>
+          <th>Nombre de voyageurs</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let annonce of annoncesEnCours">
+          <td scope="row">{{annonce?.dateTime | date:'dd/MM/yyyy hh:mm'}}</td>
+          <td>{{annonce?.itineraire.adresseDepart}}</td>
+          <td>{{annonce?.itineraire.adresseDest}}</td>
+          <td>{{annonce?.nbVoyageurs}}</td>
+          <td class="d-flex justify-content-center">
+            <button type="button" mdbBtn color="primary" class="relative waves-light btn-sm" (click)="basicModal.show()"
+              mdbWavesEffect>Annuler</button>
 
-          <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="myBasicModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h4 class="modal-title w-100" id="myModalLabel">Annulation de l'annonce</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="align-items-center">
-                    <p class="font-weight-bold">Êtes-vous sûr de vouloir annuler cette annonce ?</p>
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+              aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Annulation de l'annonce</h4>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" mdbBtn class="waves-light danger-color-dark text-white" aria-label="Close"
-                    (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-                  <button type="submit" mdbBtn color="primary" class="relative waves-light"
-                    (click)="annulerAnnonce(annonce)" mdbWavesEffect>Confirmer</button>
+                  <div class="modal-body">
+                    <div class="align-items-center">
+                      <p class="font-weight-bold">Êtes-vous sûr de vouloir annuler cette annonce ?</p>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" mdbBtn class="waves-light danger-color-dark text-white" aria-label="Close"
+                      (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+                    <button type="submit" mdbBtn color="primary" class="relative waves-light"
+                      (click)="annulerAnnonce(annonce)" mdbWavesEffect>Confirmer</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<ng-template #elseEnCours>
-  <div class="alert alert-warning" role="alert">
-    Aucune annonce en cours
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</ng-template>
-
+  <ng-template #elseEnCours>
+    <div class="alert alert-warning" role="alert">
+      Aucune annonce en cours
+    </div>
+  </ng-template>
+</div>
 
 
 <!-- AFFICHAGE HISTORIQUE -->
 <div class="container-fluide">
-  <p class="font-weight-bold">Historique</p>
+  <h6 class="font-weight-bold">Historique</h6>
   <div *ngIf="ancienneAnnonces?.length >= 1; else elseHistorique">
-    <table mdbTable bordered="true">
+    <table class="table table-hover">
       <thead>
         <tr class="blue-gradient white-text">
           <th *ngFor="let head of headElements" scope="col">{{head}} </th>
@@ -101,5 +102,4 @@
       Aucun historique
     </div>
   </ng-template>
-
 </div>

@@ -1,5 +1,5 @@
-import { Vehicule } from "./Vehicule";
-import { ResaVehiculeLite } from "./ResaVehiculeLite";
+import { Vehicule } from './Vehicule';
+import { ResaVehiculeLite } from './ResaVehiculeLite';
 
 export class ResasParVehicule {
   constructor(public vehicule?: Vehicule,
