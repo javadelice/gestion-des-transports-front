@@ -3,11 +3,12 @@
 </div>
 
 <div class="font-weight-bold mb-4 d-flex justify-content-end">
-  <a routerLink="/annonces/creer"><button type="button" class="btn btn-outline-dark btn-sm">Créer une nouvelle
-      annonce</button></a>
+  <a routerLink="/annonces/creer">
+    <button type="button" class="btn btn-light" routerLink="/reservations/creer">Créer une nouvelle  annonce</button></a>
 </div>
 
-<p class="font-weight-bold">Annonces en cours</p>
+<div class="my-5">
+<h6 class="font-weight-bold">Annonces en cours</h6>
 <div *ngIf="annoncesEnCours.length >= 1; else elseEnCours">
   <table mdbTable bordered="true">
     <thead>
@@ -63,12 +64,12 @@
     Aucune annonce en cours
   </div>
 </ng-template>
-
+</div>
 
 
 <!-- AFFICHAGE HISTORIQUE -->
 <div class="container-fluide">
-  <p class="font-weight-bold">Historique</p>
+  <h6 class="font-weight-bold">Historique</h6>
   <div *ngIf="ancienneAnnonces?.length >= 1; else elseHistorique">
     <table mdbTable bordered="true">
       <thead>

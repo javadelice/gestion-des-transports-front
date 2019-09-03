@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -8,14 +7,11 @@ import {TechComponent} from './tech/tech.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AuthComponent} from './auth/auth.component';
 import {FormsModule} from '@angular/forms';
-
 import {StatutConnecteService} from './auth/statut-connecte.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
-
 import {ReservationComponent} from './reservation/reservation.component';
 import {VehiculeResaComponent} from './vehicule-resa/vehicule-resa.component';
 import {CovoitResaComponent} from './covoiturage/covoit-resa/covoit-resa.component';
-import {CovoitResaCreerComponent} from './covoiturage/covoit-resa-creer/covoit-resa-creer.component';
 import {ReservationCreerComponent} from './reservation-creer/reservation-creer.component';
 import {AnnoncesComponent} from './covoiturage/annonces/annonces.component';
 import {StatistiquesComponent} from './statistiques/statistiques.component';
@@ -48,7 +44,6 @@ const routes: Routes = [
     AuthComponent,
     ReservationComponent,
     CovoitResaComponent,
-    CovoitResaCreerComponent,
     ReservationCreerComponent,
     MenuComponent,
     StatistiquesComponent,
