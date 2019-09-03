@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ResaVehicule } from '../models/ResaVehicule';
 import { InfoResa } from '../models/infoResa';
 import { Vehicule } from '../models/Vehicule';
+import { ResasParVehicule } from '../models/ResasParVehicule';
 
 
 const URL_BASE = environment.baseUrl;
@@ -36,5 +37,8 @@ export class VehiculeResaService {
   }
 
 
+  public rechercherVehiculeParImmatriculation(immatriculation: string): Observable<ResasParVehicule>{
+    return this._http.get<ResasParVehicule>(`${URL_BASE}vehicules/${immatriculation}`);
+  }
 }
 

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { InfoResa } from '../models/infoResa';
-import { VehiculeResaService } from '../vehicule-resa/vehicule-resa-service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Vehicule } from '../models/Vehicule';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {InfoResa} from '../models/infoResa';
+import {VehiculeResaService} from '../services/vehicule-resa-service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Vehicule} from '../models/Vehicule';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-resa-vehicule-creer',
@@ -67,6 +67,7 @@ export class ResaVehiculeCreerComponent implements OnInit {
           this.errors = respError.error;
         });
   }
+
 
   ngOnInit() {
 
