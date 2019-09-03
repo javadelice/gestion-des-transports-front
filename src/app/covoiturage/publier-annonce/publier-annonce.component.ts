@@ -18,10 +18,10 @@ export class PublierAnnonceComponent implements OnInit {
   infoCovoit = new InfoCovoit('', '', '', '', '', '', '', '', '');
   errorValidation = false;
   backEndErrors: any = {};
-  backBoolean : boolean = false;
+  backBoolean = false;
   adresseBackEndErrors: string;
   currentDate = new Date();
-  itineraire:Itineraire;
+  itineraire: Itineraire;
 
   delete() {
     return this.errorValidation = false;
@@ -38,15 +38,15 @@ export class PublierAnnonceComponent implements OnInit {
         });
   }
 
-  afficherItineraire(){
+  afficherItineraire() {
 
-    if (this.infoCovoit.adresseDepart !== '' && this.infoCovoit.adresseDestination !== ''){
+    if (this.infoCovoit.adresseDepart !== '' && this.infoCovoit.adresseDestination !== '') {
         this._ajoutAnnonce.getItineraire(this.infoCovoit.adresseDepart, this.infoCovoit.adresseDestination).subscribe(
         (itineraire) => {
-          this.itineraire = itineraire
+          this.itineraire = itineraire;
           this.backBoolean = false;
         },
-        (respError : HttpErrorResponse) => {
+        (respError: HttpErrorResponse) => {
           this.adresseBackEndErrors = respError.error;
           this.backBoolean = true;
           this.itineraire.distance = undefined;

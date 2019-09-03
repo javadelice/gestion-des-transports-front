@@ -9,7 +9,7 @@ export class Collegue {
     public telephone?: string,
     public roles?: string[],
     public matricule?: string,
-    public urlPhoto?: string){
+    public urlPhoto?: string) {
 
 
   }
