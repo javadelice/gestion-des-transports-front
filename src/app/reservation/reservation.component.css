@@ -1,16 +1,17 @@
 ::ng-deep div.card-header:hover {
-
-  background-color: rgb(255, 209, 58);
+  text-decoration: none;
+  background-color: #f96862;
   }
 
   ::ng-deep div.card-header {
-    background-color: rgb(255, 209, 58);
+    background-color: #f96862;
 
-  text-decoration: none !important;
+  text-decoration: none;
   }
 
   ::ng-deep div.card-body {
   background-color: var(--subtle-gray);
+  text-decoration: none;
   }
 
   ::ng-deep div.h6 {
