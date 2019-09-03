@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InfoResa} from '../models/infoResa';
-import {VehiculeResaService} from '../vehicule-resa/vehicule-resa-service';
+import {VehiculeResaService} from '../services/vehicule-resa-service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Vehicule} from '../models/Vehicule';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';

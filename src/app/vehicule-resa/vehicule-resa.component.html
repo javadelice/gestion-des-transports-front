@@ -1,46 +1,54 @@
-<div class="container-fluid">
+<div class="container-fluid" class="my-3">
   <h2>Réservations en cours</h2>
-  <table mdbTable bordered="true">
-    <thead>
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
+  <div *ngIf="reservations?.length >= 1; else elseEnCours">
+    <table class="table table-hover">
+      <thead>
+          <tr class="blue-gradient white-text">
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr mdbTableCol *ngFor="let reservationVehicule of reservations">
-        <th scope="row">{{reservationVehicule.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
-        <th scope="row">{{reservationVehicule.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
-        <td>{{reservationVehicule.vehiculeSociete.immatriculation}}</td>
-        <td>{{reservationVehicule.vehiculeSociete.marque}}</td>
-        <td>{{reservationVehicule.vehiculeSociete.modele}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="container" *ngIf="historique.length > 0">
-  <h2>Historique</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr mdbTableCol *ngFor="let historiques of historique">
-        <th scope="row">{{historiques.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
-        <th scope="row">{{historiques.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
-        <td>{{historiques.vehiculeSociete.immatriculation}}</td>
-        <td>{{historiques.vehiculeSociete.marque}}</td>
-        <td>{{historiques.vehiculeSociete.modele}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-    </ngb-pagination>
+      <tbody>
+        <tr mdbTableCol *ngFor="let reservationVehicule of reservations">
+          <th scope="row">{{reservationVehicule.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
+          <th scope="row">{{reservationVehicule.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
+          <td>{{reservationVehicule.vehiculeSociete.immatriculation}}</td>
+          <td>{{reservationVehicule.vehiculeSociete.marque}}</td>
+          <td>{{reservationVehicule.vehiculeSociete.modele}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <div class="container" *ngIf="historique.length > 0">
+    <h2>Historique</h2>
+    <table class="table table-striped">
+      <thead>
+          <tr class="blue-gradient white-text">
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr mdbTableCol *ngFor="let historiques of historique">
+          <th scope="row">{{historiques.dateDeDebut | date:'dd/MM/yyyy hh:mm'}}</th>
+          <th scope="row">{{historiques.dateDeFin | date:'dd/MM/yyyy hh:mm'}}</th>
+          <td>{{historiques.vehiculeSociete.immatriculation}}</td>
+          <td>{{historiques.vehiculeSociete.marque}}</td>
+          <td>{{historiques.vehiculeSociete.modele}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+      </ngb-pagination>
+    </div>
+
+  </div>
+  <ng-template #elseEnCours>
+    <div class="alert alert-warning" role="alert">
+      Aucune réservation en cours
+    </div>
+  </ng-template>
 </div>
