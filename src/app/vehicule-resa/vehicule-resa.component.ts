@@ -9,7 +9,7 @@ import { ResaVehicule } from '../models/ResaVehicule';
 })
 export class VehiculeResaComponent implements OnInit {
 
-  headElements = ['Date / heure début', 'Date / heure fin', 'Immatriculation', 'Marque', 'Modèle'];
+  headElements = ['Date / heure début', 'Date / heure fin', 'Immatriculation', 'Marque', 'Modèle', 'Chauffeur'];
 
   reservations: ResaVehicule[];
   private _historique: ResaVehicule[] = Array();

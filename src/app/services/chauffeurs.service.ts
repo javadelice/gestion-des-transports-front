@@ -34,8 +34,8 @@ getAllChauffeurs(): Observable<Collegue[]> {
 }
 
 
-donnerRoleChauffeur(id: number){
-  return this.httpClient.post(`${environment.baseUrl}admin/chauffeurs`, {"id":id});
+donnerRoleChauffeur(id: number) {
+  return this.httpClient.post(`${environment.baseUrl}admin/chauffeurs`, {'id': id});
 }
 
 }

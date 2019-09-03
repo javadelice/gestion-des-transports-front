@@ -8,7 +8,7 @@
 </div>
 
 <p class="font-weight-bold">Annonces en cours</p>
-<div *ngIf="annoncesEnCours.length >= 1; else elseEnCours">
+<div *ngIf="annoncesEnCours?.length >= 1; else elseEnCours">
   <table mdbTable bordered="true">
     <thead>
       <tr class="blue-gradient white-text">
