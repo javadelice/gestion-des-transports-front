@@ -1,60 +1,76 @@
 <div class="row my-2">
-    <div class="col-2">
-      <a class="p-2" routerLink="/vehicules">VEHICULES</a>
-    </div>
-    <div class="col-10 text-left">
-      <p> &#10095; Immatriculation </p>
+  <div class="col-2">
+    <a class="p-2" routerLink="/vehicules">VEHICULES</a>
+  </div>
+  <div class="col-10 text-left">
+    <p> &#10095; Immatriculation </p>
+  </div>
+</div>
+
+
+
+<div class="row card-body my-4">
+  <div class="col-md-8">
+    <div class="d-flex justify-content-around">
+      <div class="element">
+        <img src="{{resasParVehicule?.vehicule.photoUrl}}" class="img-fluid shadow-sm" alt="No image" />
+      </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <dl class="row my-3">
+      <dt class="col-sm-5">Marque</dt>
+      <dd class="col-sm-7">{{resasParVehicule?.vehicule.marque}}</dd>
+      <dt class="col-sm-5">Modèle</dt>
+      <dd class="col-sm-7">{{resasParVehicule?.vehicule.modele}}</dd>
+      <dt class="col-sm-5">Catégorie</dt>
+      <dd class="col-sm-7">{{resasParVehicule?.vehicule.categorie}}</dd>
+    </dl>
+  </div>
+</div>
+
+
+<div class="my-3">
+  <h3>Prochaines réservations</h3>
+  <div *ngIf="resasParVehicule.listResasEnCours.length >= 1; else elseEnCours">
+<table mdbTable bordered="true" class="my-4">
+  <thead>
+    <tr>
+      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let resasEnCours of resasParVehicule.listResasEnCours">
+      <th scope="row">{{resasEnCours?.dateDeDebut | date:'dd/MM/yyyy HH:mm'}}</th>
+      <td>{{resasEnCours?.dateDeFin}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
-      <div class="row card-body my-4">
-          <div class="col-md-8">
-              <div class="d-flex justify-content-around">
-                  <div class="element">
-                      <img src="{{resasParVehicule?.vehicule.photoUrl}}" class="img-fluid shadow-sm" alt="No image"/>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <dl class="row">
-                  <dt class="col-sm-5">Marque</dt>
-                  <dd class="col-sm-7">{{resasParVehicule?.vehicule.marque}}</dd>
-                  <dt class="col-sm-5">Modèle</dt>
-                  <dd class="col-sm-7">{{resasParVehicule?.vehicule.modele}}</dd>
-                  <dt class="col-sm-5">Catégorie</dt>
-                  <dd class="col-sm-7">{{resasParVehicule?.vehicule.categorie}}</dd>
-              </dl>
-          </div>
-      </div>
+<div class="my-3">
+  <h3>Historique des réservations</h3>
+  <div *ngIf="resasParVehicule.listResasPassees.length >= 1; else elseEnCours">
+<table mdbTable bordered="true" class="my-4">
+  <thead>
+    <tr>
+      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let resasPassees of resasParVehicule.listResasPassees">
+      <th scope="row">{{resasPassees?.dateDeDebut | date:'dd/MM/yyyy HH:mm'}}</th>
+      <td>{{resasPassees?.dateDeFin}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
 
-
-
-<table mdbTable bordered="true">
-    <thead>
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let resasEnCours of resasParVehicule.listResasEnCours">
-        <th scope="row">{{resasEnCours?.dateDeDebut | date:'dd/MM/yyyy HH:mm'}}</th>
-        <td>{{resasEnCours?.dateDeFin}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table mdbTable bordered="true">
-      <thead>
-        <tr>
-          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr mdbTableCol *ngFor="let resasPassees of resasParVehicule.listResasPassees">
-          <th scope="row">{{resasPassees?.dateDeDebut | date:'dd/MM/yyyy HH:mm'}}</th>
-          <td>{{resasPassees?.dateDeFin}}</td>
-        </tr>
-      </tbody>
-    </table>
+<ng-template #elseEnCours>
+  <div class="alert alert-warning" role="alert">
+    Aucune annonce en cours
+  </div>
+</ng-template>
