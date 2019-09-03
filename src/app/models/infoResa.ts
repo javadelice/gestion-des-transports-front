@@ -9,6 +9,8 @@ export class InfoResa {
     public heureRetour?: string,
     public minuteRetour?: string,
     public dateRetour?: string,
-    public vehiculeSociete?: Vehicule) {
-    }
+    public vehiculeSociete?: Vehicule,
+    public avecChauffeur?: boolean
+  ) {
+  }
 }

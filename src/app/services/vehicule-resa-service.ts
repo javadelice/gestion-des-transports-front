@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ResaVehicule } from '../models/ResaVehicule';
 import { InfoResa } from '../models/infoResa';
 import { Vehicule } from '../models/Vehicule';
+import { ResasParVehicule } from '../models/ResasParVehicule';
 
 
 const URL_BASE = environment.baseUrl;
@@ -35,15 +36,9 @@ export class VehiculeResaService {
     return this._http.post<InfoResa[]>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, infoResa );
   }
 
-  public indisponible(indisponible: boolean): Observable<Vehicule> {
-    // tslint:disable-next-line: max-line-length
-    return this._http.post<Vehicule>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, { 'indisponible': false });
-  }
 
-  public disponible(disponible: boolean): Observable<Vehicule> {
-    // tslint:disable-next-line: max-line-length
-    return this._http.post<Vehicule>(`${URL_BASE}collaborateur/reservations/vehicule/creer`, { 'disponible': true });
+  public rechercherVehiculeParImmatriculation(immatriculation: string): Observable<ResasParVehicule>{
+    return this._http.get<ResasParVehicule>(`${URL_BASE}vehicules/${immatriculation}`);
   }
-
 }
 

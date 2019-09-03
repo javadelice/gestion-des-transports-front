@@ -3,6 +3,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import { AnnonceCovoitResa } from 'src/app/models/AnnonceCovoitResa';
 import { CovoitResaService } from '../covoit-resa/covoit-resa.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Itineraire} from '../../models/Itineraire';
 
 @Component({
   selector: 'app-reservation-covoit',
@@ -16,8 +18,10 @@ export class ReservationCovoitComponent implements OnInit {
   date: string;
   lieuDepart: string;
   lieuArrivee: string;
-
+  itineraire: Itineraire = undefined;
   headElements = ['Date / heure', 'Départ', 'Destination', 'Véhicule', 'Chauffeur', 'Places disponibles', ''];
+  private backBoolean: boolean;
+  private adresseBackEndErrors: any;
 
   constructor(private srv: CovoitResaService,  private _router: Router, private modalService: NgbModal) { }
 
@@ -32,15 +36,32 @@ export class ReservationCovoitComponent implements OnInit {
     this.modalService.open(modal);
   }
 
-
-
-  selection() {
-    if (this.date !== undefined && this.lieuDepart !== undefined && this.lieuArrivee !== undefined) {
+  selectionLieu() {
       this.srv.getReservationsCovoit(this.date, this.lieuDepart, this.lieuArrivee)
-    .subscribe(annonces => this.annonces = annonces);
-    }
-
+        .subscribe(annonces => this.annonces = annonces);
   }
+
+  afficherItineraire() {
+
+    if ((this.lieuDepart !== undefined && this.lieuDepart !== '')  && (this.lieuArrivee !== undefined && this.lieuArrivee !== '')) {
+      this.srv.getItineraire(this.lieuDepart, this.lieuArrivee).subscribe(
+        (itineraire) => {
+          this.itineraire = itineraire;
+          this.backBoolean = false;
+        },
+        (respError: HttpErrorResponse) => {
+          this.adresseBackEndErrors = respError.error;
+          this.backBoolean = true;
+          if (this.itineraire !== undefined) {
+            this.itineraire.distance = undefined;
+            this.itineraire.duree = undefined;
+          }
+
+        }
+      );
+    }
+  }
+
 
   confirmBooking(annonce: AnnonceCovoitResa) {
     this.srv.creerResaCovoit(annonce).subscribe(

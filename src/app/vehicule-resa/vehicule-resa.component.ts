@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ResaVehicule } from '../models/ResaVehicule';
-import { VehiculeResaService } from '../services/vehicule-resa-service';
+import {Component, OnInit} from '@angular/core';
+import {VehiculeResaService} from '../services/vehicule-resa-service';
+import {ResaVehicule} from '../models/ResaVehicule';
 
 @Component({
   selector: 'app-vehicule-resa',
@@ -9,7 +9,7 @@ import { VehiculeResaService } from '../services/vehicule-resa-service';
 })
 export class VehiculeResaComponent implements OnInit {
 
-  headElements = ['Date / heure début', 'Date / heure fin', 'Immatriculation', 'Marque', 'Modèle'];
+  headElements = ['Date / heure début', 'Date / heure fin', 'Immatriculation', 'Marque', 'Modèle', 'Chauffeur'];
 
   reservations: ResaVehicule[];
   private _historique: ResaVehicule[] = Array();

@@ -3,6 +3,7 @@ import { InfoCovoit } from 'src/app/models/InfoCovoit';
 import { Router } from '@angular/router';
 import { AnnonceCovoitService } from 'src/app/services/annonce.covoit.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Itineraire } from 'src/app/models/Itineraire';
 
 @Component({
   selector: 'app-publier-annonce',
@@ -17,7 +18,10 @@ export class PublierAnnonceComponent implements OnInit {
   infoCovoit = new InfoCovoit('', '', '', '', '', '', '', '', '');
   errorValidation = false;
   backEndErrors: any = {};
+  backBoolean = false;
+  adresseBackEndErrors: string;
   currentDate = new Date();
+  itineraire: Itineraire;
 
   delete() {
     return this.errorValidation = false;
@@ -29,14 +33,32 @@ export class PublierAnnonceComponent implements OnInit {
     this._ajoutAnnonce.ajouterAnnonceCovoit(this.infoCovoit).subscribe(
       () => { this.errorValidation = false; location.reload(); },
       (respError: HttpErrorResponse) => {
-        console.log(respError.error);
          this.errorValidation = true;
          this.backEndErrors = respError.error;
         });
   }
 
+  afficherItineraire() {
+
+    if (this.infoCovoit.adresseDepart !== '' && this.infoCovoit.adresseDestination !== '') {
+        this._ajoutAnnonce.getItineraire(this.infoCovoit.adresseDepart, this.infoCovoit.adresseDestination).subscribe(
+        (itineraire) => {
+          this.itineraire = itineraire;
+          this.backBoolean = false;
+        },
+        (respError: HttpErrorResponse) => {
+          this.adresseBackEndErrors = respError.error;
+          this.backBoolean = true;
+          this.itineraire.distance = undefined;
+          this.itineraire.duree = undefined;
+        }
+        );
+    }
+  }
+
 
   ngOnInit() {
+
   }
 
 }

@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {AnnonceCovoitResa} from '../../models/AnnonceCovoitResa';
 import {environment} from '../../../environments/environment';
 import { ResaCovoit } from 'src/app/models/ResaCovoit';
+import {Itineraire} from '../../models/Itineraire';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,15 @@ export class CovoitResaService {
   }
 
   getReservationsCovoit(date: string, lieuDepart: string, lieuArrivee: string): Observable<AnnonceCovoitResa[]> {
-    // tslint:disable-next-line: max-line-length
-    return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?date=${date}&lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee === undefined || lieuArrivee === '') && (date === undefined || date === '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}`);
+    }
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee !== undefined || lieuArrivee !== '') && (date === undefined || date === '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}`);
+    }
+    if ((lieuDepart !== undefined || lieuDepart !== '') && (lieuArrivee !== undefined || lieuArrivee !== '') && (date !== undefined || date !== '')) {
+      return this._http.get<AnnonceCovoitResa[]>(`${environment.baseUrl}collaborateur/reservations/covoit/creer?lieuDepart=${lieuDepart}&lieuArrivee=${lieuArrivee}&date=${date}`);
+    }
   }
 
   getOldReservations(): Observable<ResaCovoit[]> {
@@ -41,5 +49,9 @@ export class CovoitResaService {
 
   annulerResaCovoit (resa: ResaCovoit) {
     return this._http.patch<ResaCovoit>(`${environment.baseUrl}collaborateur/reservations`, resa);
+  }
+
+  getItineraire(adresseDepart: string, adresseDest: string): Observable<Itineraire> {
+    return this._http.get<Itineraire>(`${environment.baseUrl}collaborateur/annonces/creer_itineraire?adresseDepart=${adresseDepart}&adresseDest=${adresseDest}`);
   }
 }
